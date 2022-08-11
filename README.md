@@ -4,4 +4,4 @@
 ---
 
 ## App
-[Lint to app](https://frontend-hexlet-chat-ru.herokuapp.com/) :zap:
+[Link to app](https://frontend-hexlet-chat-ru.herokuapp.com/) :zap:
