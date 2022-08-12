@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# ignoreForLearn
+/src/components/UI/signInForm/signFormTest.jsx
+
 # testing
 /coverage
 
