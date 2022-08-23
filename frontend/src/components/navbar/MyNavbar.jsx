@@ -1,12 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Navbar, Container } from 'react-bootstrap';
 
-// <Link to="/login">{login}</Link>
-
 const MyNavbar = () => (
-  <Navbar className="shadow-sm" bg="white" variant="white">
+  <Navbar className="shadow-sm" bg="white" variant="light" expand="lg">
     <Container>
-      <Navbar.Brand href="/">Slack chat</Navbar.Brand>
+      <Link className="navbar-brand" to="/">Hexlet Chat</Link>
     </Container>
   </Navbar>
 );
