@@ -8,7 +8,7 @@ import {
   Card,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import loginImage from '../../images/signIn.svg';
+import loginImage from '../../images/signin.svg';
 
 const Login = () => {
   return (
