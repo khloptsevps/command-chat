@@ -1,8 +1,8 @@
 /* eslint-disable arrow-body-style */
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Footer from '../footer/Footer';
-import MyNavbar from '../navbar/MyNavbar';
+import Footer from '../footer/Footer.jsx';
+import MyNavbar from '../navbar/MyNavbar.jsx';
 
 const Main = () => {
   return (

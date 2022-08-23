@@ -7,9 +7,9 @@ import {
   Route,
   Routes,
 } from 'react-router-dom';
-import Main from './components/main/Main';
-import Login from './components/routes/Login';
-import NotFound from './components/routes/NotFound';
+import Main from './components/main/Main.jsx';
+import Login from './components/routes/Login.jsx';
+import NotFound from './components/routes/NotFound.jsx';
 
 // Настройте роутинг для двух путей: / и /login.
 
