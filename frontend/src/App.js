@@ -1,26 +1,31 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import {
-  Routes,
-  Route,
+  BrowserRouter,
   Navigate,
+  Route,
+  Routes,
 } from 'react-router-dom';
-import MyNavbar from './components/navbar/MyNavbar';
-import Login from './components/pages/Login';
-import NotFound from './components/pages/NotFound';
+import Main from './components/main/Main';
+import Login from './components/routes/Login';
+import NotFound from './components/routes/NotFound';
 
 // Настройте роутинг для двух путей: / и /login.
-// <Login />
 
-const App = () => (
-  <div className="d-flex flex-column h-100">
-    <MyNavbar />
-    <Routes>
-      <Route path="/" element={<Navigate to="/login" replace />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  </div>
-);
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />}>
+          <Route path="/" element={<Navigate to="login" replace />} />
+          <Route path="login" element={<Login />} />
+          {/* <Route path="signup" element={<SignUp />} /> */}
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 export default App;
