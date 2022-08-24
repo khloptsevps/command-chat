@@ -16,11 +16,10 @@ const SignInForm = () => (
       username: Yup.string().required('Required'),
       password: Yup.string().required('Required'),
     })}
-    onSubmit={(values, { setSubmitting, isValidating }) => {
+    onSubmit={(values, { setSubmitting }) => {
       setTimeout(() => {
         alert(JSON.stringify(values, null, 2));
         setSubmitting(false);
-        console.log(isValidating);
       }, 1000);
     }}
   >
