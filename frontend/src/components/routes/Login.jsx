@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable arrow-body-style */
 import React from 'react';
@@ -9,6 +10,8 @@ import {
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import loginImage from '../../images/signin.svg';
+import SignInForm from '../forms/SignInForm.jsx';
+import MyImage from '../image/MyImage.jsx';
 
 const Login = () => {
   return (
@@ -17,9 +20,8 @@ const Login = () => {
         <Col bsPrefix="col-12 col-md-8 col-xxl-6">
           <Card bsPrefix="card shadow-sm">
             <Card.Body bsPrefix="card-body row p-5">
-              <Container bsPrefix="col-12 col-md-6 d-flex align-items-center justify-content-center">
-                <img src={loginImage} className="rounded-circle" alt="Войти" />
-              </Container>
+              <MyImage imagePath={loginImage} text="Войти" />
+              <SignInForm />
             </Card.Body>
             <Card.Footer bsPrefix="card-footer p-4">
               <div className="text-center">
