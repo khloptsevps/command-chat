@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable arrow-body-style */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import notFound from '../../images/notFound.svg';

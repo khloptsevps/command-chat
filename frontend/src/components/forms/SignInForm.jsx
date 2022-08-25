@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-/* eslint-disable no-alert */
 import React from 'react';
 import { Formik, Form } from 'formik';
 import { Button } from 'react-bootstrap';
@@ -16,11 +15,8 @@ const SignInForm = () => (
       username: Yup.string().required('Required'),
       password: Yup.string().required('Required'),
     })}
-    onSubmit={(values, { setSubmitting }) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        setSubmitting(false);
-      }, 1000);
+    onSubmit={(values) => {
+      console.log(values);
     }}
   >
     <Form className="col-12 col-md-6 mt-3 mt-mb-0">
