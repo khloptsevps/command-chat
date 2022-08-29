@@ -5,7 +5,7 @@ import { Navbar, Container } from 'react-bootstrap';
 const MyNavbar = () => (
   <Navbar className="shadow-sm" bg="white" variant="light" expand="lg">
     <Container>
-      <Link className="navbar-brand" to="/">Hexlet Chat</Link>
+      <Navbar.Brand as={Link} to="/">Hexlet Chat</Navbar.Brand>
     </Container>
   </Navbar>
 );
