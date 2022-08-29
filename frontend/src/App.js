@@ -4,22 +4,29 @@ import {
   Navigate,
   Route,
   Routes,
+  Outlet,
 } from 'react-router-dom';
-import Main from './components/routes/Main.jsx';
 import Login from './components/routes/Login.jsx';
 import NotFound from './components/routes/NotFound.jsx';
+import MyNavbar from './components/navbar/MyNavbar.jsx';
+import Footer from './components/footer/Footer.jsx';
 
 const App = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Main />}>
-        <Route path="/" element={<Navigate to="login" replace />} />
+  <div className="d-flex flex-column h-100">
+    <BrowserRouter>
+      <MyNavbar />
+      <Outlet />
+      <Routes>
+        <Route
+          path="/"
+          element={<Navigate to="/login" replace />}
+        />
         <Route path="login" element={<Login />} />
-        {/* <Route path="signup" element={<SignUp />} /> */}
         <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
-  </BrowserRouter>
+      </Routes>
+    </BrowserRouter>
+    <Footer />
+  </div>
 );
 
 export default App;
