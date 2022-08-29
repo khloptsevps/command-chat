@@ -1,14 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Footer from '../footer/Footer.jsx';
-import MyNavbar from '../navbar/MyNavbar.jsx';
 
-const Main = () => (
-  <div className="d-flex flex-column h-100">
-    <MyNavbar />
-    <Outlet />
-    <Footer />
-  </div>
-);
+const Main = () => {
+  const loggedIn = false;
+  return (
+    <p>Тут должен быть чат</p>
+  );
+};
 
 export default Main;
