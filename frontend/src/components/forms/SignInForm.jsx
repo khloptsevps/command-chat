@@ -1,46 +1,59 @@
 /* eslint-disable no-console */
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Formik, Form } from 'formik';
-import { Button } from 'react-bootstrap';
 import * as Yup from 'yup';
-import MyInput from '../input/MyInput.jsx';
+import MyButton from './formsElements/MyButton.jsx';
+import MyTextInput from './formsElements/MyInput.jsx';
 
-const SignInForm = () => (
-  <Formik
-    initialValues={{
-      username: '',
-      password: '',
-    }}
-    validationSchema={Yup.object({
-      username: Yup.string().required('Required'),
-      password: Yup.string().required('Required'),
-    })}
-    onSubmit={(values) => {
-      console.log(values);
-    }}
-  >
-    <Form className="col-12 col-md-6 mt-3 mt-mb-0">
-      <h1 className="text-center mb-4">Войти</h1>
-      <MyInput
-        name="username"
-        id="username"
-        label="Ваш ник"
-        type="text"
-        placeholder="Ваш ник"
-      />
+const formSubmit = (v, { resetForm }) => {
+  console.log(v);
+  resetForm();
+};
 
-      <MyInput
-        name="password"
-        id="password"
-        autoComplete="current-password"
-        label="Пароль"
-        type="password"
-        placeholder="Пароль"
-        mb="mb-4"
-      />
-      <Button className="w-100 mb-3" variant="primary" type="submit">Войти</Button>
-    </Form>
-  </Formik>
-);
+const SignInForm = () => {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current.focus();
+  }, []);
+
+  const schema = Yup.object({
+    username: Yup.string().required('Обязательное поле'),
+    password: Yup.string().required('Обязательное поле'),
+  });
+  const initFormValues = {
+    username: '',
+    password: '',
+  };
+
+  return (
+    <Formik
+      initialValues={initFormValues}
+      validationSchema={schema}
+      onSubmit={formSubmit}
+    >
+      <Form className="col-12 col-md-6 mt-3 mt-mb-0">
+        <h1 className="text-center mb-4">Войти</h1>
+        <MyTextInput
+          ref={ref}
+          autoComplete="username"
+          label="Ваш ник"
+          id="username"
+          name="username"
+          type="text"
+          placeholder="Ваш ник"
+        />
+        <MyTextInput
+          autoComplete="password"
+          label="Пароль"
+          id="password"
+          name="password"
+          type="password"
+          placeholder="Пароль"
+        />
+        <MyButton>Войти</MyButton>
+      </Form>
+    </Formik>
+  );
+};
 
 export default SignInForm;
