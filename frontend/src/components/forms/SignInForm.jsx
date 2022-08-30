@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import MyButton from './formsElements/MyButton.jsx';
 import MyTextInput from './formsElements/MyInput.jsx';
-import signInFormHandler from '../../helpers/handlers.js';
+import signInFormHandler from '../../utils/handlers.js';
 import useAuth from '../../hooks/useAuth.jsx';
 
 const SignInForm = () => {

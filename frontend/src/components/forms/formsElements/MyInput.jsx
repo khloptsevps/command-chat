@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { FormGroup, FormControl, FormLabel } from 'react-bootstrap';
 import { useField } from 'formik';
-import PropTypes from 'prop-types';
+import myPropTypes from '../../../utils/propTypes.js';
 
 const MyTextInput = forwardRef(({
   label,
@@ -21,8 +21,8 @@ const MyTextInput = forwardRef(({
 MyTextInput.displayName = 'MyTextInput';
 
 MyTextInput.propTypes = {
-  label: PropTypes.string.isRequired,
-  children: PropTypes.element,
+  label: myPropTypes.label,
+  children: myPropTypes.children,
 };
 
 export default MyTextInput;

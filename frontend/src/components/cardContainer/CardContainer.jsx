@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Container, Row, Col, Card,
 } from 'react-bootstrap';
-import PropTypes from 'prop-types';
+import myPropTypes from '../../utils/propTypes.js';
 
 const CardContainer = ({ children }) => (
   <Container bsPrefix="container-fluid h-100">
@@ -17,10 +17,7 @@ const CardContainer = ({ children }) => (
 );
 
 CardContainer.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.element),
-    PropTypes.element,
-  ]).isRequired,
+  children: myPropTypes.children,
 };
 
 export default CardContainer;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import myPropTypes from '../../utils/propTypes.js';
 import AuthContext from '../../contexts/index.jsx';
-import storage from '../../helpers/storage.js';
+import storage from '../../utils/storage.js';
 
 const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(storage.hasToken('user'));
@@ -19,10 +19,7 @@ const AuthProvider = ({ children }) => {
 };
 
 AuthProvider.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.element),
-    PropTypes.element,
-  ]).isRequired,
+  children: myPropTypes.children,
 };
 
 export default AuthProvider;

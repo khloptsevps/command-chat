@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Image } from 'react-bootstrap';
-import PropTypes from 'prop-types';
+import myPropTypes from '../../utils/propTypes.js';
 
 const MyImage = ({ imagePath, text }) => (
   <Container bsPrefix="col-12 col-md-6 d-flex align-items-center justify-content-center">
@@ -13,8 +13,8 @@ MyImage.defaultProps = {
 };
 
 MyImage.propTypes = {
-  imagePath: PropTypes.string,
-  text: PropTypes.string.isRequired,
+  imagePath: myPropTypes.imagePath,
+  text: myPropTypes.text,
 };
 
 export default MyImage;
