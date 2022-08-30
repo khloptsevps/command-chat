@@ -1,20 +1,18 @@
-/* eslint-disable no-console */
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import MyButton from './formsElements/MyButton.jsx';
 import MyTextInput from './formsElements/MyInput.jsx';
-
-const formSubmit = (v, { resetForm }) => {
-  console.log(v);
-  resetForm();
-};
+import signInFormHandler from '../../helpers/handlers.js';
+import useAuth from '../../hooks/useAuth.jsx';
 
 const SignInForm = () => {
+  const [authFailed, setAuthFiled] = useState(false);
+  const auth = useAuth();
   const ref = useRef();
   useEffect(() => {
-    ref.current.focus();
-  }, []);
+    ref.current.select();
+  }, [authFailed]);
 
   const schema = Yup.object({
     username: Yup.string().required('Обязательное поле'),
@@ -29,7 +27,7 @@ const SignInForm = () => {
     <Formik
       initialValues={initFormValues}
       validationSchema={schema}
-      onSubmit={formSubmit}
+      onSubmit={signInFormHandler(setAuthFiled, auth)}
     >
       <Form className="col-12 col-md-6 mt-3 mt-mb-0">
         <h1 className="text-center mb-4">Войти</h1>
@@ -41,6 +39,7 @@ const SignInForm = () => {
           name="username"
           type="text"
           placeholder="Ваш ник"
+          isInvalid={authFailed}
         />
         <MyTextInput
           autoComplete="password"
@@ -49,7 +48,10 @@ const SignInForm = () => {
           name="password"
           type="password"
           placeholder="Пароль"
-        />
+          isInvalid={authFailed}
+        >
+          {authFailed ? <div className="invalid-tooltip">Неверные имя пользователя или пароль</div> : null}
+        </MyTextInput>
         <MyButton>Войти</MyButton>
       </Form>
     </Formik>
