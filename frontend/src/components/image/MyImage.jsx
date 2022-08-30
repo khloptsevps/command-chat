@@ -14,7 +14,7 @@ MyImage.defaultProps = {
 
 MyImage.propTypes = {
   imagePath: myPropTypes.imagePath,
-  text: myPropTypes.text,
+  text: myPropTypes.text.isRequired,
 };
 
 export default MyImage;

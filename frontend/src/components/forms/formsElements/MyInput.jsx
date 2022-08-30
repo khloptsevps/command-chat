@@ -21,7 +21,7 @@ const MyTextInput = forwardRef(({
 MyTextInput.displayName = 'MyTextInput';
 
 MyTextInput.propTypes = {
-  label: myPropTypes.label,
+  label: myPropTypes.label.isRequired,
   children: myPropTypes.children,
 };
 
