@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 
 const myPropTypes = {
   children: PropTypes.node,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   imagePath: PropTypes.string,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
 };
 
 export default myPropTypes;
