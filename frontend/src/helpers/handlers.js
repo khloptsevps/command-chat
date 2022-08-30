@@ -1,6 +1,7 @@
 import axios from 'axios';
 import storage from './storage.js';
 
+// temporary
 const api = '/api/v1/login';
 
 const signInFormHandler = (setAuthFailed, { logIn }) => (
@@ -12,8 +13,6 @@ const signInFormHandler = (setAuthFailed, { logIn }) => (
       resetForm();
       logIn();
     } catch (error) {
-      console.log(error.response.status);
-      console.log(error.isAxiosError);
       setSubmitting(false);
       if (error.isAxiosError && error.response.status === 401) {
         setAuthFailed(true);
