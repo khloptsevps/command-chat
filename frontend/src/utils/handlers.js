@@ -9,7 +9,7 @@ const signInFormHandler = (setAuthFailed, { logIn }) => (
     try {
       setAuthFailed(false);
       const response = await axios.post(api, values);
-      storage.setItem('user', response.data);
+      storage.setItem(response.data);
       resetForm();
       logIn();
     } catch (error) {
