@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 const MyTextInput = forwardRef(({
   label,
+  children,
   ...props
 }, ref) => {
   const [field] = useField(props);
@@ -12,6 +13,7 @@ const MyTextInput = forwardRef(({
     <FormGroup className="form-floating mb-3">
       <FormControl ref={ref} {...field} {...props} required />
       <FormLabel>{label}</FormLabel>
+      {children}
     </FormGroup>
   );
 });
@@ -20,6 +22,7 @@ MyTextInput.displayName = 'MyTextInput';
 
 MyTextInput.propTypes = {
   label: PropTypes.string.isRequired,
+  children: PropTypes.element,
 };
 
 export default MyTextInput;
