@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import notFound from '../../images/notFound.svg';
 
-const NotFound = () => {
+const NotFoundPage = () => {
   const text = 'Но вы можете перейти ';
   return (
     <div className="text-center">
@@ -16,4 +16,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default NotFoundPage;
