@@ -1,8 +1,10 @@
-const setItem = (key, value) => {
+const key = 'user';
+
+const setItem = (value) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
 
-const getItemData = (key) => {
+const getItemData = () => {
   const item = localStorage.getItem(key);
   if (!item) {
     return null;
@@ -11,19 +13,11 @@ const getItemData = (key) => {
   return data;
 };
 
-const hasItem = (key) => {
-  const item = localStorage.getItem(key);
-  if (!item) {
-    return false;
-  }
-  return true;
-};
-
-const removeItem = (key) => {
+const removeItem = () => {
   localStorage.removeItem(key);
 };
 
-const hasToken = (key) => {
+const hasToken = () => {
   if (!getItemData(key)) {
     return false;
   }
@@ -36,7 +30,6 @@ const hasToken = (key) => {
 const storage = {
   setItem,
   getItemData,
-  hasItem,
   removeItem,
   hasToken,
 };
