@@ -1,4 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   BrowserRouter,
   Navigate,
@@ -7,7 +10,7 @@ import {
   Routes,
   Outlet,
 } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import myPropTypes from './utils/propTypes.js';
 import AuthProvider from './components/authProvider/AuthProvider.jsx';
 import useAuth from './hooks/useAuth.jsx';
 import MyNavbar from './components/navbar/MyNavbar.jsx';
@@ -45,14 +48,12 @@ const App = () => (
       </BrowserRouter>
       <Footer />
     </div>
+    <ToastContainer pauseOnFocusLoss={false} />
   </AuthProvider>
 );
 
 ChatRoute.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.element),
-    PropTypes.element,
-  ]).isRequired,
+  children: myPropTypes.children.isRequired,
 };
 
 export default App;
