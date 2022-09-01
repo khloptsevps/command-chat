@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import MyButton from './formsElements/MyButton.jsx';
@@ -10,6 +11,7 @@ const SignInForm = () => {
   const [authFailed, setAuthFiled] = useState(false);
   const auth = useAuth();
   const ref = useRef();
+  const navigate = useNavigate();
   useEffect(() => {
     ref.current.select();
   }, [authFailed]);
@@ -27,7 +29,7 @@ const SignInForm = () => {
     <Formik
       initialValues={initFormValues}
       validationSchema={schema}
-      onSubmit={signInFormHandler(setAuthFiled, auth)}
+      onSubmit={signInFormHandler(setAuthFiled, auth, navigate)}
     >
       <Form className="col-12 col-md-6 mt-3 mt-mb-0">
         <h1 className="text-center mb-4">Войти</h1>
