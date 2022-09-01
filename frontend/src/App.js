@@ -19,7 +19,7 @@ import ChatPage from './components/pages/ChatPage.jsx';
 import NotFoundPage from './components/pages/NotFoundPage.jsx';
 import Footer from './components/footer/Footer.jsx';
 
-const ChatRoute = ({ children }) => {
+const PrivateRoute = ({ children }) => {
   const auth = useAuth();
   const location = useLocation();
   return (
@@ -37,9 +37,9 @@ const App = () => (
           <Route
             path="/"
             element={(
-              <ChatRoute>
+              <PrivateRoute>
                 <ChatPage />
-              </ChatRoute>
+              </PrivateRoute>
             )}
           />
           <Route path="login" element={<LoginPage />} />
@@ -52,7 +52,7 @@ const App = () => (
   </AuthProvider>
 );
 
-ChatRoute.propTypes = {
+PrivateRoute.propTypes = {
   children: myPropTypes.children.isRequired,
 };
 
