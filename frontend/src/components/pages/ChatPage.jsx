@@ -1,22 +1,32 @@
-/* eslint-disable arrow-body-style */
 /* eslint-disable no-unused-vars */
-import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import storage from '../../utils/storage.js';
+import Chat from '../chat/Chat.jsx';
+import Loader from '../loader/Loader.jsx';
+import routes from '../../utils/routes.js';
 
 const ChatPage = () => {
   const { username, token } = storage.getItemData();
+  const [chatData, setChatData] = useState(null);
+
+  useEffect(() => {
+    const fetchChatData = async (userToken) => {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      };
+      const response = await axios.get(routes.dataPath(), config);
+      setChatData(response.data);
+    };
+    fetchChatData(token);
+  }, []);
+
   return (
-    <Container
-      className="h-100 my-4 overflow-hidden rounded shadow"
-    >
-      <Row
-        className="h-100 bg-white flex-md-row"
-      >
-        <Col className="col-4 col-md-2 border-end pt-5 px-0 bg-light" />
-        <Col className="col p-0 h-100" />
-      </Row>
-    </Container>
+    !chatData
+      ? <Loader />
+      : <Chat />
   );
 };
 
