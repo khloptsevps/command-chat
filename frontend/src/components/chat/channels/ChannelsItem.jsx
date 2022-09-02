@@ -6,8 +6,8 @@ import { switchChannel } from '../../../slices/channelsSlice.js';
 
 const ChannelsItem = ({ id, name }) => {
   const dispatch = useDispatch();
-  const currentChannalId = useSelector((state) => state.channels.currentChannelId);
-  const variant = currentChannalId === id ? 'info' : 'light';
+  const currentChannelId = useSelector((state) => state.channels.currentChannelId);
+  const variant = currentChannelId === id ? 'info' : 'light';
 
   const handleSwitchChannel = () => {
     dispatch(switchChannel({ newCurrentId: id }));
@@ -30,7 +30,7 @@ const ChannelsItem = ({ id, name }) => {
 ChannelsItem.propTypes = {
   id: myPropTypes.id.isRequired,
   name: myPropTypes.name.isRequired,
-  removable: myPropTypes.removable.isRequired,
+  // removable: myPropTypes.removable.isRequired,
 };
 
 export default ChannelsItem;
