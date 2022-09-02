@@ -16,6 +16,10 @@ const CardContainer = ({ children }) => (
   </Container>
 );
 
+CardContainer.defaultProps = {
+  children: null,
+};
+
 CardContainer.propTypes = {
   children: myPropTypes.children,
 };
