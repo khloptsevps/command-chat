@@ -1,4 +1,3 @@
-import { toast } from 'react-toastify';
 import axios from 'axios';
 import storage from './storage.js';
 import routes from './routes.js';
@@ -11,15 +10,6 @@ const signInFormHandler = (setAuthFailed, { logIn }, navigate) => (
       storage.setItem(response.data);
       resetForm();
       logIn();
-      toast.success('Успешная авторизация!', {
-        position: 'top-center',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
       navigate('/');
     } catch (error) {
       setSubmitting(false);
