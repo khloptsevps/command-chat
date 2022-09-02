@@ -9,6 +9,9 @@ const myPropTypes = {
   name: PropTypes.string,
   removable: PropTypes.bool,
   title: PropTypes.string,
+  length: PropTypes.number,
+  body: PropTypes.string,
+  username: PropTypes.string,
 };
 
 export default myPropTypes;
