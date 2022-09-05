@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import storage from './storage.js';
 import routes from './routes.js';
 
@@ -16,7 +17,17 @@ const signInFormHandler = (setAuthFailed, { logIn }, navigate) => (
       if (error.isAxiosError && error.response.status === 401) {
         setAuthFailed(true);
       }
-      console.log(error);
+      if (axios.isAxiosError(error)) {
+        toast.error('Ошибка соединения', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     }
   }
 );
