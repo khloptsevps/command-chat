@@ -4,7 +4,8 @@ env:
 extends:
   - eslint:recommended
   - plugin:react/recommended
-  - airbnb-base
+  - airbnb
+  - airbnb/rules/react
 parserOptions:
   ecmaFeatures:
     jsx: true
