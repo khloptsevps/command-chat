@@ -10,16 +10,16 @@ import useAuth from '../utils/hooks/useAuth.jsx';
 const LoginPage = () => {
   const { loggedIn } = useAuth();
   const location = useLocation();
-  if (loggedIn) {
-    return <Navigate to="/" state={{ from: location }} />;
-  }
-  return (
+
+  return loggedIn ? (
+    <Navigate to="/" state={{ from: location }} />
+  ) : (
     <CardContainer>
-      <Card.Body bsPrefix="card-body row p-5">
+      <Card.Body className="row p-5">
         <MyImage imagePath={loginImage} text="Войти" />
         <SignInForm />
       </Card.Body>
-      <Card.Footer bsPrefix="card-footer p-4">
+      <Card.Footer className="p-4">
         <div className="text-center">
           <span>Нет аккаунта? </span>
           <Link to="../signup">Регистрация</Link>
