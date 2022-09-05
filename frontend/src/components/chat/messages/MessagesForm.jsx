@@ -1,31 +1,40 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
-import { Formik, Form, Field } from 'formik';
-import { Button } from 'react-bootstrap';
+import { useFormik } from 'formik';
+import React, { useEffect, useRef } from 'react';
+import * as Yup from 'yup';
+import { Button, Form } from 'react-bootstrap';
 
-// eslint-disable-next-line arrow-body-style
 const MessagesForm = () => {
-  const initFormValues = { body: '' };
+  const input = useRef();
+  useEffect(() => {
+    input.current.focus();
+  }, []);
+  const initialValues = { body: '' };
+  const validationSchema = Yup.object({
+    body: Yup.string().required('enterMessage'),
+  });
+  const onSubmit = (v, actions) => {
+    console.log(v);
+    actions.resetForm();
+  };
+  const formik = useFormik({ initialValues, validationSchema, onSubmit });
   return (
     <div className="mt-auto px-5 py-3">
-      <Formik
-        initialValues={initFormValues}
-        onSubmit={(v) => console.log(v)}
-      >
-        <Form noValidate className="py-1 border rounded-2">
-          <div className="input-group has-validation">
-            <Field
-              className="border-0 p-0 ps-2 form-control"
-              name="body"
-              aria-label="Новое сообщение"
-              placeholder="Ведите сообщение..."
-            />
-            <Button type="submit" size="sm" disabled>
-              Отправить сообщение
-            </Button>
-          </div>
-        </Form>
-      </Formik>
+      <Form noValidate className="py-1 border rounded-2" onSubmit={formik.handleSubmit}>
+        <div className="input-group has-validation">
+          <Form.Control
+            ref={input}
+            className="border-0 p-0 ps-2 form-control"
+            name="body"
+            aria-label="Новое сообщение"
+            placeholder="Ведите сообщение..."
+            {...formik.getFieldProps('body')}
+          />
+          <Button type="submit" size="sm" className="m-1" disabled={!(formik.dirty && formik.isValid)}>
+            <span>Отпрвить</span>
+          </Button>
+        </div>
+      </Form>
     </div>
   );
 };
