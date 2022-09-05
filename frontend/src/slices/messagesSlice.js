@@ -9,11 +9,6 @@ const messagesSlice = createSlice({
   initialState,
   reducers: {
     initMessages: (state, { payload }) => {
-      // eslint-disable-next-line object-curly-newline
-      // temporary for tests
-      payload.messages.push({
-        body: 'asd', channelId: 1, username: 'admin', id: 4,
-      });
       messagesAdapter.addMany(state, payload.messages);
     },
   },

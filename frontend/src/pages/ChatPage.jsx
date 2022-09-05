@@ -2,12 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import storage from '../../utils/storage.js';
-import Chat from '../chat/Chat.jsx';
-import Loader from '../loader/Loader.jsx';
-import routes from '../../utils/routes.js';
-import { initChannels } from '../../slices/channelsSlice.js';
-import { initMessages } from '../../slices/messagesSlice.js';
+import storage from '../utils/storage.js';
+import Chat from '../components/chat/Chat.jsx';
+import Loader from '../components/loader/Loader.jsx';
+import routes from '../utils/routes.js';
+import { initChannels } from '../slices/channelsSlice.js';
+import { initMessages } from '../slices/messagesSlice.js';
 
 const ChatPage = () => {
   const { username, token } = storage.getItemData();

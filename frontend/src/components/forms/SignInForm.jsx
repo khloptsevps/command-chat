@@ -4,7 +4,7 @@ import { Formik, Form } from 'formik';
 import MyButton from './formsElements/MyButton.jsx';
 import MyTextInput from './formsElements/MyInput.jsx';
 import signInFormHandler from '../../utils/handlers.js';
-import useAuth from '../../hooks/useAuth.jsx';
+import useAuth from '../../utils/hooks/useAuth.jsx';
 
 const SignInForm = () => {
   const [authFailed, setAuthFiled] = useState(false);

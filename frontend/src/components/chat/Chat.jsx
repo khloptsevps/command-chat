@@ -5,12 +5,18 @@ import {
 } from 'react-bootstrap';
 import ChannelsList from './channels/ChannelsList.jsx';
 import MessagesList from './messages/MessagesList.jsx';
+import MessagesForm from './messages/MessagesForm.jsx';
 
 const Chat = () => (
   <Container className="h-100 my-4 overflow-hidden rounded shadow">
     <Row className="h-100 bg-white flex-md-row">
       <ChannelsList />
-      <MessagesList />
+      <div className="col p-0 h-100">
+        <div className="d-flex flex-column h-100 p-0">
+          <MessagesList />
+          <MessagesForm />
+        </div>
+      </div>
     </Row>
   </Container>
 );

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,11 +11,11 @@ import {
 } from 'react-router-dom';
 import myPropTypes from './utils/propTypes.js';
 import AuthProvider from './components/authProvider/AuthProvider.jsx';
-import useAuth from './hooks/useAuth.jsx';
+import useAuth from './utils/hooks/useAuth.jsx';
 import MyNavbar from './components/navbar/MyNavbar.jsx';
-import LoginPage from './components/pages/LoginPage.jsx';
-import ChatPage from './components/pages/ChatPage.jsx';
-import NotFoundPage from './components/pages/NotFoundPage.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+import ChatPage from './pages/ChatPage.jsx';
+import NotFoundPage from './pages/NotFoundPage.jsx';
 import Footer from './components/footer/Footer.jsx';
 
 const PrivateRoute = ({ children }) => {

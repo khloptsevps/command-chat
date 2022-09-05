@@ -13,16 +13,14 @@ const MessagesList = () => {
   const currenChannelMessages = messages
     .filter((message) => message.channelId === currentChannelId);
   return (
-    <div className="col p-0 h-100">
-      <div className="d-flex flex-column h-100 p-0">
-        <MessagesHeader title={currentChannel.name} length={currenChannelMessages.length} />
+    <>
+      <MessagesHeader title={currentChannel.name} length={currenChannelMessages.length} />
         <div id="messages-box" className="chat-messages overflow-auto px-5">
           {currenChannelMessages.length > 0 && currenChannelMessages.map((message) => (
             <MessagesItem key={message.id} body={message.body} username={message.username} />
           ))}
         </div>
-      </div>
-    </div>
+    </>
   );
 };
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link, useLocation, Navigate } from 'react-router-dom';
-import loginImage from '../../images/signin.svg';
-import CardContainer from '../cardContainer/CardContainer.jsx';
-import SignInForm from '../forms/SignInForm.jsx';
-import MyImage from '../image/MyImage.jsx';
-import useAuth from '../../hooks/useAuth.jsx';
+import loginImage from '../__assets__/images/signIn.svg';
+import CardContainer from '../components/cardContainer/CardContainer.jsx';
+import SignInForm from '../components/forms/SignInForm.jsx';
+import MyImage from '../components/image/MyImage.jsx';
+import useAuth from '../utils/hooks/useAuth.jsx';
 
 const LoginPage = () => {
   const { loggedIn } = useAuth();

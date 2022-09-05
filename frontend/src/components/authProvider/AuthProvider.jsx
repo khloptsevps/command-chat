@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import myPropTypes from '../../utils/propTypes.js';
-import AuthContext from '../../contexts/index.jsx';
+import AuthContext from '../../utils/contexts/index.jsx';
 import storage from '../../utils/storage.js';
 
 const AuthProvider = ({ children }) => {
