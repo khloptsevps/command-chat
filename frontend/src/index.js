@@ -6,8 +6,4 @@ import App from './App';
 import store from './slices/store.js';
 
 const root = ReactDOM.createRoot(document.getElementById('chat'));
-root.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-);
+root.render(<Provider store={store}><App /></Provider>);
