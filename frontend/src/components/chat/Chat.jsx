@@ -1,8 +1,5 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
-import {
-  Container, Row,
-} from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import ChannelsList from './channels/ChannelsList.jsx';
 import MessagesList from './messages/MessagesList.jsx';
 import MessagesForm from './messages/MessagesForm.jsx';
