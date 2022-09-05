@@ -5,8 +5,8 @@ extends:
   - eslint:recommended
   - plugin:react/recommended
   - airbnb-base
-# disabled to deploy
-#  - prettier
+  # disabled to deploy
+  # - prettier
 parserOptions:
   ecmaFeatures:
     jsx: true
@@ -27,3 +27,6 @@ rules:
   import/extensions: 0
   react/jsx-props-no-spreading: off
   no-console: off
+  object-curly-newline:
+    - error
+    - ImportDeclaration: never
