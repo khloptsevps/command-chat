@@ -7,7 +7,7 @@ const setItem = (value) => {
 const getItemData = () => {
   const item = localStorage.getItem(key);
   if (!item) {
-    return null;
+    return { username: null, token: null };
   }
   const data = JSON.parse(item);
   return data;
