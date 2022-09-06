@@ -1,25 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import myPropTypes from '../../utils/propTypes.js';
 import AuthContext from '../../utils/contexts/index.jsx';
 import storage from '../../utils/storage.js';
 
+const getAuthHeader = () => {
+  const userToken = storage.getItemData().token;
+  return {
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  };
+};
+
 const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(storage.hasToken());
-  const logIn = () => setLoggedIn(true);
+
+  const logIn = () => {
+    setLoggedIn(true);
+  };
+
   const logOut = () => {
     localStorage.removeItem('user');
     setLoggedIn(false);
   };
 
-  return (
-    <AuthContext.Provider value={{ loggedIn, logIn, logOut }}>
-      {children}
-    </AuthContext.Provider>
+  const contextValue = useMemo(
+    () => ({
+      loggedIn,
+      getAuthHeader,
+      logIn,
+      logOut,
+      username: storage.getItemData().username,
+    }),
+    [loggedIn]
   );
+
+  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 };
 
 AuthProvider.propTypes = {
-  children: myPropTypes.children,
+  children: myPropTypes.children.isRequired,
 };
 
 export default AuthProvider;
