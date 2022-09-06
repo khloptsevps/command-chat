@@ -20,6 +20,10 @@ const MyTextInput = forwardRef(({
 
 MyTextInput.displayName = 'MyTextInput';
 
+MyTextInput.defaultProps = {
+  children: null,
+};
+
 MyTextInput.propTypes = {
   label: myPropTypes.label.isRequired,
   children: myPropTypes.children,
