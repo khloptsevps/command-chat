@@ -2,8 +2,10 @@ import { useFormik } from 'formik';
 import React, { useEffect, useRef } from 'react';
 import * as Yup from 'yup';
 import { Button, Form } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addMessage } from '../../../slices/messagesSlice.js';
 import useAuth from '../../../utils/hooks/useAuth.jsx';
+import socket from '../../../utils/socket.js';
 
 const onSubmit = (username, channelId) => (v, actions) => {
   const message = {
@@ -11,33 +13,40 @@ const onSubmit = (username, channelId) => (v, actions) => {
     channelId,
     username,
   };
-  console.log(message);
+  socket.emit('newMessage', message);
   actions.resetForm();
 };
+
+const validationSchema = Yup.object({
+  body: Yup.string().required('enterMessage'),
+});
 
 const MessagesForm = () => {
   const channelId = useSelector((state) => state.channels.currentChannelId);
   const input = useRef();
   const { username } = useAuth();
+  const dispatch = useDispatch();
   useEffect(() => {
     input.current.focus();
   }, [channelId]);
-  const initialValues = { body: '' };
-  const validationSchema = Yup.object({
-    body: Yup.string().required('enterMessage'),
-  });
+  useEffect(() => {
+    socket.on('newMessage', (payload) => {
+      dispatch(addMessage(payload));
+    });
+    return () => {
+      socket.off('newMessage', (payload) => {
+        dispatch(addMessage(payload));
+      });
+    };
+  }, [socket]);
   const formik = useFormik({
-    initialValues,
+    initialValues: { body: '' },
     validationSchema,
     onSubmit: onSubmit(username, channelId),
   });
   return (
     <div className="mt-auto px-5 py-3">
-      <Form
-        noValidate
-        className="py-1 border rounded-2"
-        onSubmit={formik.handleSubmit}
-      >
+      <Form noValidate className="py-1 border rounded-2" onSubmit={formik.handleSubmit}>
         <div className="input-group has-validation">
           <Form.Control
             ref={input}
