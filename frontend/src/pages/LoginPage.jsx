@@ -15,7 +15,7 @@ const LoginPage = () => {
     <Navigate to="/" state={{ from: location }} />
   ) : (
     <CardContainer>
-      <Card.Body className="row p-5">
+      <Card.Body className="row p-5 pb-0">
         <MyImage imagePath={loginImage} text="Войти" />
         <SignInForm />
       </Card.Body>
