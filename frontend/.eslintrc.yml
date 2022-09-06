@@ -30,5 +30,4 @@ rules:
   object-curly-newline:
     - error
     - ImportDeclaration: never
-  comma-dangle:
-    - functions: never
+  comma-dangle: 0
