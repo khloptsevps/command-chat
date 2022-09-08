@@ -46,7 +46,11 @@ const SignInForm = () => {
           placeholder="Пароль"
           isInvalid={authFailed}
         >
-          {authFailed ? <div className="invalid-tooltip">Неверные имя пользователя или пароль</div> : null}
+          {authFailed ? (
+            <div className="invalid-tooltip">
+              Неверные имя пользователя или пароль
+            </div>
+          ) : null}
         </MyTextInput>
         <MyButton>Войти</MyButton>
       </Form>
