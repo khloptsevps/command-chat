@@ -1,9 +1,10 @@
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import storage from './storage.js';
 import routes from './routes.js';
+import toasts from './toasts.js';
 
-const signInFormHandler = (setAuthFailed, { logIn }, navigate) => (
+const signInFormHandler =
+  (setAuthFailed, { logIn }, navigate) =>
   async (values, { resetForm, setSubmitting }) => {
     try {
       setAuthFailed(false);
@@ -17,18 +18,9 @@ const signInFormHandler = (setAuthFailed, { logIn }, navigate) => (
       if (error.isAxiosError && error.response.status === 401) {
         setAuthFailed(true);
       }
-      if (axios.isAxiosError(error)) {
-        toast.error('Ошибка соединения', {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+      if (error.message === 'Network Error' || error.response.status === 404) {
+        toasts.networkError();
       }
     }
-  }
-);
+  };
 export default signInFormHandler;
