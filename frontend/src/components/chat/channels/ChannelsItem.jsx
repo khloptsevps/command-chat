@@ -6,7 +6,9 @@ import { switchChannel } from '../../../slices/channelsSlice.js';
 
 const ChannelsItem = ({ id, name }) => {
   const dispatch = useDispatch();
-  const currentChannelId = useSelector((state) => state.channels.currentChannelId);
+  const currentChannelId = useSelector(
+    (state) => state.channels.currentChannelId
+  );
   const variant = currentChannelId === id ? 'info' : 'light';
 
   const handleSwitchChannel = () => {

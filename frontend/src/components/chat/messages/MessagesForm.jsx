@@ -51,7 +51,11 @@ const MessagesForm = () => {
 
   return (
     <div className="mt-auto px-5 py-3">
-      <Form noValidate className="py-1 border rounded-2" onSubmit={formik.handleSubmit}>
+      <Form
+        noValidate
+        className="py-1 border rounded-2"
+        onSubmit={formik.handleSubmit}
+      >
         <div className="input-group has-validation">
           <Form.Control
             ref={input}

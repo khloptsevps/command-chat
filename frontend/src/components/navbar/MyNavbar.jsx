@@ -7,11 +7,13 @@ const MyNavbar = () => {
   const { loggedIn, logOut } = useAuth();
   return (
     <Navbar className="shadow-sm" bg="white" variant="light" expand="lg">
-    <Container>
-      <Navbar.Brand as={Link} to="/">Hexlet Chat</Navbar.Brand>
-      {loggedIn && <Button onClick={() => logOut()}>Выйти</Button>}
-    </Container>
-  </Navbar>
+      <Container>
+        <Navbar.Brand as={Link} to="/">
+          Hexlet Chat
+        </Navbar.Brand>
+        {loggedIn && <Button onClick={() => logOut()}>Выйти</Button>}
+      </Container>
+    </Navbar>
   );
 };
 
