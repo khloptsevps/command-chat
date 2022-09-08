@@ -7,14 +7,14 @@ import { addMessage } from '../../../slices/messagesSlice.js';
 import useAuth from '../../../utils/hooks/useAuth.jsx';
 import socket from '../../../utils/socket.js';
 
-const onSubmit = (username, channelId) => (v, actions) => {
+const onSubmit = (username, channelId) => (v) => {
   const message = {
     ...v,
     channelId,
     username,
   };
   socket.emit('newMessage', message);
-  actions.resetForm();
+  // todo: сделать подтверждение доставки сообщений с сервера
 };
 
 const validationSchema = Yup.object({
@@ -26,24 +26,29 @@ const MessagesForm = () => {
   const input = useRef();
   const { username } = useAuth();
   const dispatch = useDispatch();
+
   useEffect(() => {
     input.current.focus();
   }, [channelId]);
+
   useEffect(() => {
-    socket.on('newMessage', (payload) => {
+    const listener = (payload) => {
       dispatch(addMessage(payload));
-    });
+    };
+
+    socket.on('newMessage', listener);
+
     return () => {
-      socket.off('newMessage', (payload) => {
-        dispatch(addMessage(payload));
-      });
+      socket.off('newMessage', listener);
     };
   }, [socket]);
+
   const formik = useFormik({
     initialValues: { body: '' },
     validationSchema,
     onSubmit: onSubmit(username, channelId),
   });
+
   return (
     <div className="mt-auto px-5 py-3">
       <Form noValidate className="py-1 border rounded-2" onSubmit={formik.handleSubmit}>
