@@ -1,6 +1,7 @@
 import { Formik, Form } from 'formik';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { addMessage } from '../../../slices/messagesSlice.js';
 import useAuth from '../../../utils/hooks/useAuth.jsx';
 import socket from '../../../utils/socket.js';
@@ -11,12 +12,16 @@ const MessagesForm = () => {
   const channelId = useSelector((state) => state.channels.currentChannelId);
   const { username } = useAuth();
   const dispatch = useDispatch();
+  const [inputDisabled, setInputDisabled] = useState(false);
+  const element = useRef(null);
+  const [networkError, setNetworkError] = useState(false);
 
   useEffect(() => {
     const listener = (payload) => {
       dispatch(addMessage(payload));
+      setInputDisabled(false);
+      element.current?.reset();
     };
-
     socket.on('newMessage', listener);
 
     return () => {
@@ -24,23 +29,41 @@ const MessagesForm = () => {
     };
   }, [socket]);
 
-  const onSubmit = (v, actions) => {
+  useEffect(() => {
+    const id = !networkError
+      ? null
+      : toast.loading('Ошибка подключения, переподключаюсь...');
+    socket.io.on('error', () => {
+      setNetworkError(true);
+    });
+    socket.io.on('reconnect', () => {
+      setNetworkError(false);
+      setInputDisabled(false);
+      toast.update(id, {
+        render: 'Успешно переподключился!',
+        type: 'success',
+        isLoading: false,
+        autoClose: 5000,
+      });
+    });
+  }, [networkError]);
+
+  const onSubmit = (v) => {
     const message = {
       ...v,
       channelId,
       username,
     };
-    socket.emit('newMessage', message);
-    // todo: сделать подтверждение доставки сообщений с сервера
-    actions.resetForm();
+    setInputDisabled(true);
+    socket.volatile.emit('newMessage', message);
   };
 
   return (
     <Formik initialValues={{ body: '' }} onSubmit={onSubmit}>
       <div className="mt-auto px-5 py-3">
-        <Form noValidate className="py-1 border rounded-2">
+        <Form ref={element} noValidate className="py-1 border rounded-2">
           <div className="input-group has-validation">
-            <InputMessage name="body" />
+            <InputMessage name="body" disabled={inputDisabled} />
             <SendButton />
           </div>
         </Form>
