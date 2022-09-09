@@ -17,8 +17,8 @@ const MessagesItem = ({ username, body }) => {
 MessagesItem.displayName = 'MessagesItem';
 
 MessagesItem.propTypes = {
-  body: myPropTypes.body.isRequired,
-  username: myPropTypes.username.isRequired,
+  body: myPropTypes.string.isRequired,
+  username: myPropTypes.string.isRequired,
 };
 
 export default MessagesItem;

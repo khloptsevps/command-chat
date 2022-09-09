@@ -21,7 +21,7 @@ MyTextInput.defaultProps = {
 };
 
 MyTextInput.propTypes = {
-  label: myPropTypes.label.isRequired,
+  label: myPropTypes.string.isRequired,
   children: myPropTypes.children,
 };
 

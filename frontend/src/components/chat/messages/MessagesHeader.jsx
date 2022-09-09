@@ -13,6 +13,6 @@ const MessagesHeader = ({ title, length }) => (
 export default MessagesHeader;
 
 MessagesHeader.propTypes = {
-  title: myPropTypes.title.isRequired,
-  length: myPropTypes.length.isRequired,
+  title: myPropTypes.string.isRequired,
+  length: myPropTypes.number.isRequired,
 };

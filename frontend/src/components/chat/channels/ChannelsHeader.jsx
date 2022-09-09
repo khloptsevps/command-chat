@@ -27,7 +27,7 @@ ChannelsHeader.defaultProps = {
 };
 
 ChannelsHeader.propTypes = {
-  title: myPropTypes.title,
+  title: myPropTypes.string,
 };
 
 export default ChannelsHeader;

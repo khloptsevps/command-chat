@@ -30,9 +30,8 @@ const ChannelsItem = ({ id, name }) => {
 };
 
 ChannelsItem.propTypes = {
-  id: myPropTypes.id.isRequired,
-  name: myPropTypes.name.isRequired,
-  // removable: myPropTypes.removable.isRequired,
+  id: myPropTypes.number.isRequired,
+  name: myPropTypes.string.isRequired,
 };
 
 export default ChannelsItem;
