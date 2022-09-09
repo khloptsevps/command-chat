@@ -1,11 +1,12 @@
 import { useFormik } from 'formik';
 import React, { useEffect, useRef } from 'react';
 import * as Yup from 'yup';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessage } from '../../../slices/messagesSlice.js';
 import useAuth from '../../../utils/hooks/useAuth.jsx';
 import socket from '../../../utils/socket.js';
+import SendButton from './form/SendButton.jsx';
 
 const onSubmit = (username, channelId) => (v) => {
   const message = {
@@ -20,6 +21,8 @@ const onSubmit = (username, channelId) => (v) => {
 const validationSchema = Yup.object({
   body: Yup.string().required('enterMessage'),
 });
+
+// disabled={!(formik.dirty && formik.isValid)}
 
 const MessagesForm = () => {
   const channelId = useSelector((state) => state.channels.currentChannelId);
@@ -65,14 +68,7 @@ const MessagesForm = () => {
             placeholder="Ведите сообщение..."
             {...formik.getFieldProps('body')}
           />
-          <Button
-            type="submit"
-            size="sm"
-            className="m-1"
-            disabled={!(formik.dirty && formik.isValid)}
-          >
-            <span>Отправить</span>
-          </Button>
+          <SendButton isDisabled={!(formik.dirty && formik.isValid)} />
         </div>
       </Form>
     </div>
