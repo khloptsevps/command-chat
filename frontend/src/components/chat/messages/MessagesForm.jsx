@@ -1,38 +1,16 @@
-import { useFormik } from 'formik';
-import React, { useEffect, useRef } from 'react';
-import * as Yup from 'yup';
-import { Form } from 'react-bootstrap';
+import { Formik, Form } from 'formik';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessage } from '../../../slices/messagesSlice.js';
 import useAuth from '../../../utils/hooks/useAuth.jsx';
 import socket from '../../../utils/socket.js';
-import SendButton from './form/SendButton.jsx';
-
-const onSubmit = (username, channelId) => (v) => {
-  const message = {
-    ...v,
-    channelId,
-    username,
-  };
-  socket.emit('newMessage', message);
-  // todo: сделать подтверждение доставки сообщений с сервера
-};
-
-const validationSchema = Yup.object({
-  body: Yup.string().required('enterMessage'),
-});
-
-// disabled={!(formik.dirty && formik.isValid)}
+import SendButton from './formElements/SendButton.jsx';
+import InputMessage from './formElements/InputMessage.jsx';
 
 const MessagesForm = () => {
   const channelId = useSelector((state) => state.channels.currentChannelId);
-  const input = useRef();
   const { username } = useAuth();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    input.current.focus();
-  }, [channelId]);
 
   useEffect(() => {
     const listener = (payload) => {
@@ -46,32 +24,28 @@ const MessagesForm = () => {
     };
   }, [socket]);
 
-  const formik = useFormik({
-    initialValues: { body: '' },
-    validationSchema,
-    onSubmit: onSubmit(username, channelId),
-  });
+  const onSubmit = (v, actions) => {
+    const message = {
+      ...v,
+      channelId,
+      username,
+    };
+    socket.emit('newMessage', message);
+    // todo: сделать подтверждение доставки сообщений с сервера
+    actions.resetForm();
+  };
 
   return (
-    <div className="mt-auto px-5 py-3">
-      <Form
-        noValidate
-        className="py-1 border rounded-2"
-        onSubmit={formik.handleSubmit}
-      >
-        <div className="input-group has-validation">
-          <Form.Control
-            ref={input}
-            className="border-0 p-0 ps-2 form-control"
-            name="body"
-            aria-label="Новое сообщение"
-            placeholder="Ведите сообщение..."
-            {...formik.getFieldProps('body')}
-          />
-          <SendButton isDisabled={!(formik.dirty && formik.isValid)} />
-        </div>
-      </Form>
-    </div>
+    <Formik initialValues={{ body: '' }} onSubmit={onSubmit}>
+      <div className="mt-auto px-5 py-3">
+        <Form noValidate className="py-1 border rounded-2">
+          <div className="input-group has-validation">
+            <InputMessage name="body" />
+            <SendButton />
+          </div>
+        </Form>
+      </div>
+    </Formik>
   );
 };
 
