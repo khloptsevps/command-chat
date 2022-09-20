@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import store from './slices/store.js';
+import './locales/i18n.js';
 
 const root = ReactDOM.createRoot(document.getElementById('chat'));
 root.render(
