@@ -24,7 +24,12 @@ export default {
         text: 'Но вы можете перейти ',
         link: 'на главную страницу',
       },
-      chat: {},
+      chat: {
+        channels: {
+          title: 'Каналы',
+        },
+        messages: {},
+      },
     },
   },
 };
