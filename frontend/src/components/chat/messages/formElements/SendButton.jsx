@@ -1,10 +1,12 @@
 import { useFormikContext } from 'formik';
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import SendButtonSvg from '../../../svg/SendButtonSvg.jsx';
 import myPropTypes from '../../../../utils/propTypes';
 
 const SendButton = () => {
+  const { t } = useTranslation();
   const { dirty, isValid } = useFormikContext();
   return (
     <Button
@@ -14,7 +16,9 @@ const SendButton = () => {
       disabled={!(dirty && isValid)}
     >
       <SendButtonSvg />
-      <span className="visually-hidden">Отправить</span>
+      <span className="visually-hidden">
+        {t('pages.chat.messages.form.button')}
+      </span>
     </Button>
   );
 };

@@ -2,6 +2,7 @@ import { Formik, Form } from 'formik';
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import { addMessage } from '../../../slices/messagesSlice.js';
 import useAuth from '../../../utils/hooks/useAuth.jsx';
 import socket from '../../../utils/socket.js';
@@ -9,6 +10,7 @@ import SendButton from './formElements/SendButton.jsx';
 import InputMessage from './formElements/InputMessage.jsx';
 
 const MessagesForm = () => {
+  const { t } = useTranslation();
   const channelId = useSelector((state) => state.channels.currentChannelId);
   const { username } = useAuth();
   const dispatch = useDispatch();
@@ -32,7 +34,7 @@ const MessagesForm = () => {
   useEffect(() => {
     const id = !networkError
       ? null
-      : toast.loading('Ошибка подключения, переподключаюсь...');
+      : toast.loading(t('pages.chat.messages.form.errors.network'));
     socket.io.on('error', () => {
       setNetworkError(true);
     });
@@ -40,7 +42,7 @@ const MessagesForm = () => {
       setNetworkError(false);
       setInputDisabled(false);
       toast.update(id, {
-        render: 'Успешно переподключился!',
+        render: t('pages.chat.messages.form.errors.reconnect'),
         type: 'success',
         isLoading: false,
         autoClose: 5000,

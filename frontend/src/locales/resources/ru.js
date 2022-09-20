@@ -28,7 +28,22 @@ export default {
         channels: {
           title: 'Каналы',
         },
-        messages: {},
+        messages: {
+          form: {
+            input: {
+              ariaLabel: 'Новое сообщение',
+              placeholder: 'Ведите сообщение...',
+            },
+            button: 'Отправить',
+            errors: {
+              network: 'Ошибка подключения, выполняется переподключение...',
+              reconnect: 'Подключение установлено!',
+            },
+          },
+          message_one: '{{count}} сообщение',
+          message_few: '{{count}} сообщения',
+          message_many: '{{count}} сообщений',
+        },
       },
     },
   },

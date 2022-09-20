@@ -22,7 +22,7 @@ const MessagesList = () => {
     <>
       <MessagesHeader
         title={currentChannel.name}
-        length={currenChannelMessages.length}
+        count={currenChannelMessages.length}
       />
       <div id="messages-box" className="chat-messages overflow-auto px-5">
         {currenChannelMessages.length > 0 &&
