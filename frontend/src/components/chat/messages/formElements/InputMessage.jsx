@@ -8,7 +8,7 @@ const InputMessage = ({ ...props }) => {
   const input = useRef(null);
   useEffect(() => {
     input.current?.focus();
-  });
+  }, []);
   const [field] = useField(props);
   return (
     <Form.Control
