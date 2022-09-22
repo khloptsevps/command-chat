@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import myPropTypes from '../../../utils/propTypes';
 import AddChannelSvg from '../../svg/AddChannelSvg.jsx';
 import { openModal } from '../../../slices/modalSlice';
+import useModal from '../../../utils/hooks/useModal.jsx';
 
 // todo 1
 // Реализуйте добавление нового канала.
@@ -31,9 +32,11 @@ import { openModal } from '../../../slices/modalSlice';
 // Имена каналов в списке должны быть с префиксом # (решетка и пробел). Например: # test channel
 
 const ChannelsHeader = ({ title }) => {
+  const { setType } = useModal();
   const dispatch = useDispatch();
   const buttonHandler = () => {
     dispatch(openModal({ isOpened: true, type: 'addChannel' }));
+    setType('addChannel');
   };
   return (
     <Container className="d-flex justify-content-between mb-2 ps-4 pe-2 align-items-end border-bottom border-dark">
