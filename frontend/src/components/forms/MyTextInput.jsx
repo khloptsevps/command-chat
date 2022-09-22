@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { useField } from 'formik';
 import { FormControl, FormGroup, FormLabel } from 'react-bootstrap';
-import myPropTypes from '../../../utils/propTypes.js';
+import myPropTypes from '../../utils/propTypes.js';
 
 const MyTextInput = ({ label, children, ...props }) => {
   const [field] = useField(props);
