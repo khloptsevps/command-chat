@@ -5,6 +5,7 @@ const myPropTypes = {
   boolean: PropTypes.bool,
   number: PropTypes.number,
   string: PropTypes.string,
+  object: PropTypes.object,
 };
 
 export default myPropTypes;
