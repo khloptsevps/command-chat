@@ -4,7 +4,7 @@ import ru from './resources/ru.js';
 
 i18next.use(initReactI18next).init({
   lng: 'ru',
-  debug: true,
+  debug: false,
   resources: {
     ru,
   },
