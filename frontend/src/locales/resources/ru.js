@@ -44,6 +44,23 @@ export default {
           message_few: '{{count}} сообщения',
           message_many: '{{count}} сообщений',
         },
+        modals: {
+          addChannel: {
+            title: 'Добавить канал',
+          },
+          renameChannel: {
+            title: 'Переименовать канал',
+          },
+          removeChannel: {
+            title: 'Удалить канал',
+            message: 'Уверены?',
+          },
+          buttons: {
+            send: 'Отправить',
+            chancel: 'Отменить',
+            remove: 'Удалить',
+          },
+        },
       },
     },
   },
