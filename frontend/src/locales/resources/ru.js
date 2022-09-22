@@ -47,7 +47,12 @@ export default {
         modals: {
           addChannel: {
             title: 'Добавить канал',
-            label: 'Введите имя канала...',
+            label: 'Имя канала',
+            errors: {
+              required: 'Обязательное поле',
+              min: 'От 3 до 20 символов',
+              max: 'От 3 до 20 символов',
+            },
           },
           renameChannel: {
             title: 'Переименовать канал',
