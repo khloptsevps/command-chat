@@ -5,7 +5,6 @@ extends:
   - eslint:recommended
   - plugin:react/recommended
   - airbnb-base
-  # disabled to deploy
   - prettier
 parserOptions:
   ecmaFeatures:
@@ -35,3 +34,6 @@ rules:
     - error
     - ImportDeclaration: never
   comma-dangle: 0
+  no-param-reassign:
+    - error
+    - props: false
