@@ -3,7 +3,13 @@ import { useField } from 'formik';
 import { FormControl, FormGroup, FormLabel } from 'react-bootstrap';
 import myPropTypes from '../../utils/propTypes.js';
 
-const MyTextInput = ({ label, children, ...props }) => {
+const MyTextInput = ({
+  label,
+  hideLabel,
+  divGroupClasses,
+  children,
+  ...props
+}) => {
   const [field] = useField(props);
   const id = props.name;
   const input = useRef(null);
@@ -13,7 +19,7 @@ const MyTextInput = ({ label, children, ...props }) => {
     }
   }, []);
   return (
-    <FormGroup className="form-floating mb-3">
+    <FormGroup className={divGroupClasses}>
       <FormControl
         ref={input}
         id={id}
@@ -21,7 +27,9 @@ const MyTextInput = ({ label, children, ...props }) => {
         {...props}
         placeholder={label}
       />
-      <FormLabel htmlFor={props.name}>{label}</FormLabel>
+      <FormLabel visuallyHidden={hideLabel} htmlFor={props.name}>
+        {label}
+      </FormLabel>
       {children}
     </FormGroup>
   );
@@ -29,6 +37,8 @@ const MyTextInput = ({ label, children, ...props }) => {
 
 MyTextInput.propTypes = {
   label: myPropTypes.string.isRequired,
+  hideLabel: myPropTypes.boolean,
+  divGroupClasses: myPropTypes.string,
   name: myPropTypes.string.isRequired,
   type: myPropTypes.string.isRequired,
   children: myPropTypes.children,
