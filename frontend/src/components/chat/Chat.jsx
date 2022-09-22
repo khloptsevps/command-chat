@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ChannelsList from './channels/ChannelsList.jsx';
 import MessagesList from './messages/MessagesList.jsx';
 import MessagesForm from './messages/MessagesForm.jsx';
-import { closeModal } from '../../slices/modalsSlice.js';
+import { closeModal } from '../../slices/modalSlice.js';
 import MyModal from '../modals/MyModal.jsx';
 
 const Chat = () => {
