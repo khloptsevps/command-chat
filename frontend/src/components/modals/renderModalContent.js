@@ -1,10 +1,10 @@
 import React from 'react';
 import AddChannel from './AddChannel.jsx';
 
-const renderModalContent = (type, handleClose) => {
+const renderModalContent = (type) => {
   switch (type) {
     case 'addChannel':
-      return <AddChannel handleClose={handleClose} />;
+      return <AddChannel />;
     default:
       return null;
   }
