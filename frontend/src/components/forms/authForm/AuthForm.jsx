@@ -39,6 +39,7 @@ const AuthForm = () => {
       <Form className="col-12 col-md-6 mt-3 mt-mb-0">
         <h1 className="text-center mb-4">{t('pages.login.form.title')}</h1>
         <MyTextInput
+          divGroupClasses="form-floating mb-3"
           label={t('pages.login.form.inputLabel')}
           name="username"
           type="text"
@@ -46,6 +47,7 @@ const AuthForm = () => {
           isInvalid={authFailed}
         />
         <MyTextInput
+          divGroupClasses="form-floating mb-3"
           label={t('pages.login.form.passwordLabel')}
           name="password"
           type="password"
