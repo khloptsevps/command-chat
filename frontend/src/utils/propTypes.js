@@ -6,6 +6,7 @@ const myPropTypes = {
   number: PropTypes.number,
   string: PropTypes.string,
   object: PropTypes.object,
+  func: PropTypes.func,
 };
 
 export default myPropTypes;
