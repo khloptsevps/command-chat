@@ -3,10 +3,11 @@ import { Form } from 'formik';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import MyTextInput from '../MyTextInput.jsx';
-import myPropTypes from '../../../utils/propTypes';
+import useModal from '../../../utils/hooks/useModal.jsx';
 
-const ModalForm = ({ type, closeModal }) => {
+const ModalForm = () => {
   const { t } = useTranslation();
+  const { type, handleClose } = useModal();
   return (
     <Form>
       <MyTextInput
@@ -19,7 +20,7 @@ const ModalForm = ({ type, closeModal }) => {
           <Button
             className="me-2 mt-2"
             variant="secondary"
-            onClick={closeModal}
+            onClick={handleClose}
           >
             {t('pages.chat.modals.buttons.chancel')}
           </Button>
@@ -30,11 +31,6 @@ const ModalForm = ({ type, closeModal }) => {
       </MyTextInput>
     </Form>
   );
-};
-
-ModalForm.propTypes = {
-  closeModal: myPropTypes.func.isRequired,
-  type: myPropTypes.string.isRequired,
 };
 
 export default ModalForm;
