@@ -9,20 +9,16 @@ const validationSchema = Yup.object({
   name: Yup.string().required('Обязательное поле'),
 });
 
-const AddChannelForm = ({ closeModal }) => {
+const AddChannelForm = () => {
   const initValues = {
     name: '',
   };
   const handleAddChannel = () => {};
   return (
     <Formik initialValues={initValues} onSubmit={handleAddChannel}>
-      <ModalForm type="addChannel" closeModal={closeModal} />
+      <ModalForm />
     </Formik>
   );
-};
-
-AddChannelForm.propTypes = {
-  closeModal: myPropTypes.func.isRequired,
 };
 
 export default AddChannelForm;

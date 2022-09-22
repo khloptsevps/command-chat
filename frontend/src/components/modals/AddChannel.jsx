@@ -1,10 +1,9 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import myPropTypes from '../../utils/propTypes';
 import AddChannelForm from '../forms/modalForms/addChannelForm/AddChannelForm.jsx';
 
-const AddChannel = ({ handleClose }) => {
+const AddChannel = () => {
   const { t } = useTranslation();
   return (
     <>
@@ -12,14 +11,10 @@ const AddChannel = ({ handleClose }) => {
         <Modal.Title>{t('pages.chat.modals.addChannel.title')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <AddChannelForm closeModal={handleClose} />
+        <AddChannelForm />
       </Modal.Body>
     </>
   );
-};
-
-AddChannel.propTypes = {
-  handleClose: myPropTypes.func.isRequired,
 };
 
 export default AddChannel;
