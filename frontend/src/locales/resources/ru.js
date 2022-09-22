@@ -47,6 +47,7 @@ export default {
         modals: {
           addChannel: {
             title: 'Добавить канал',
+            label: 'Введите имя канала...',
           },
           renameChannel: {
             title: 'Переименовать канал',
