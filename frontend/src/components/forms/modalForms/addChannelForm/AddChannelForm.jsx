@@ -2,7 +2,6 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import myPropTypes from '../../../../utils/propTypes.js';
 import ModalForm from '../ModalForm.jsx';
 
 const validationSchema = Yup.object({
