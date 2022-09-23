@@ -1,36 +1,19 @@
 import { Formik, Form } from 'formik';
 import React, { useEffect, useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import { addMessage } from '../../../slices/messagesSlice.js';
 import useAuth from '../../../utils/hooks/useAuth.jsx';
 import socket from '../../../utils/socket.js';
 import SendButton from './formElements/SendButton.jsx';
 import InputMessage from './formElements/InputMessage.jsx';
 
-const MessagesForm = () => {
-  const { t } = useTranslation();
-  const channelId = useSelector((state) => state.channels.currentChannelId);
-  const { username } = useAuth();
-  const dispatch = useDispatch();
-  const [inputDisabled, setInputDisabled] = useState(false);
-  const element = useRef(null);
-  const [networkError, setNetworkError] = useState(false);
-
-  useEffect(() => {
-    const listener = (payload) => {
-      dispatch(addMessage(payload));
-      setInputDisabled(false);
-      element.current?.reset();
-    };
-    socket.on('newMessage', listener);
-
-    return () => {
-      socket.off('newMessage', listener);
-    };
-  }, [socket]);
-
+const handleErrorEffect = (
+  networkError,
+  setNetworkError,
+  setInputDisabled,
+  t
+) => {
   useEffect(() => {
     const id = !networkError
       ? null
@@ -49,6 +32,21 @@ const MessagesForm = () => {
       });
     });
   }, [networkError]);
+};
+
+const MessagesForm = () => {
+  const { t } = useTranslation();
+  const channelId = useSelector((state) => state.channels.currentChannelId);
+  const { username } = useAuth();
+  const [inputDisabled, setInputDisabled] = useState(false);
+  const element = useRef(null);
+  const [networkError, setNetworkError] = useState(false);
+
+  useEffect(() => {
+    element.current?.reset();
+  }, [inputDisabled]);
+
+  handleErrorEffect(networkError, setNetworkError, setInputDisabled, t);
 
   const onSubmit = (v) => {
     const message = {
@@ -57,7 +55,11 @@ const MessagesForm = () => {
       username,
     };
     setInputDisabled(true);
-    socket.volatile.emit('newMessage', message);
+    socket.volatile.emit('newMessage', message, ({ status }) => {
+      if (status === 'ok') {
+        setInputDisabled(false);
+      }
+    });
   };
 
   return (
