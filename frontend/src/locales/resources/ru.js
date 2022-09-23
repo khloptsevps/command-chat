@@ -52,6 +52,7 @@ export default {
               required: 'Обязательное поле',
               min: 'От 3 до 20 символов',
               max: 'От 3 до 20 символов',
+              notOneOf: 'Должно быть уникальным',
             },
           },
           renameChannel: {
