@@ -1,11 +1,9 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Container, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import myPropTypes from '../../../utils/propTypes';
+import { useTranslation } from 'react-i18next';
 import AddChannelSvg from '../../svg/AddChannelSvg.jsx';
-import { openModal } from '../../../slices/modalSlice';
+import { openModal } from '../../../slices/modalSlice.js';
 import useModal from '../../../utils/hooks/useModal.jsx';
 
 // todo 1
@@ -31,16 +29,18 @@ import useModal from '../../../utils/hooks/useModal.jsx';
 
 // Имена каналов в списке должны быть с префиксом # (решетка и пробел). Например: # test channel
 
-const ChannelsHeader = ({ title }) => {
+const ChannelsHeader = () => {
+  const { t } = useTranslation();
   const { setType } = useModal();
   const dispatch = useDispatch();
   const buttonHandler = () => {
     dispatch(openModal({ isOpened: true, type: 'addChannel' }));
     setType('addChannel');
   };
+
   return (
     <Container className="d-flex justify-content-between mb-2 ps-4 pe-2 align-items-end border-bottom border-dark">
-      <span className="m-0">{title}</span>
+      <span className="m-0">{t('pages.chat.channels.title')}</span>
       <Button
         className="p-0 btn-group-vertical border-0"
         onClick={buttonHandler}
@@ -50,14 +50,6 @@ const ChannelsHeader = ({ title }) => {
       </Button>
     </Container>
   );
-};
-
-ChannelsHeader.defaultProps = {
-  title: 'Ваше название',
-};
-
-ChannelsHeader.propTypes = {
-  title: myPropTypes.string,
 };
 
 export default ChannelsHeader;
