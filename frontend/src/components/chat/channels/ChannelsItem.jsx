@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import myPropTypes from '../../../utils/propTypes.js';
 import { switchChannel } from '../../../slices/channelsSlice.js';
 
+// TODO 2
+// Реализуйте выпадающее меню с кнопками управления каналом;
+
 const ChannelsItem = ({ id, name }) => {
   const dispatch = useDispatch();
   const currentChannelId = useSelector(
@@ -12,7 +15,7 @@ const ChannelsItem = ({ id, name }) => {
   const variant = currentChannelId === id ? 'info' : 'light';
 
   const handleSwitchChannel = () => {
-    dispatch(switchChannel({ newCurrentId: id }));
+    dispatch(switchChannel({ id }));
   };
 
   return (
