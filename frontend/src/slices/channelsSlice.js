@@ -13,7 +13,7 @@ const channelsSlice = createSlice({
       state.currentChannelId = payload.currentChannelId;
     },
     switchChannel: (state, { payload }) => {
-      state.currentChannelId = payload.newCurrentId;
+      state.currentChannelId = payload.id;
     },
     addChannel: channelsAdapter.addOne,
   },
