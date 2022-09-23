@@ -3,6 +3,8 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import ModalForm from '../ModalForm.jsx';
+import useModal from '../../../../utils/hooks/useModal.jsx';
+import socket from '../../../../utils/socket.js';
 
 const initSchema = (t) =>
   Yup.object({
@@ -14,18 +16,22 @@ const initSchema = (t) =>
 
 const AddChannelForm = () => {
   const { t } = useTranslation();
+  const { handleClose } = useModal();
   const initValues = {
     name: '',
   };
-  // todo сделать обработчик формы
-  const handleAddChannel = (v) => {
-    console.log(v);
+
+  const handleForm = (value, { resetForm }) => {
+    resetForm();
+    handleClose();
+    // todo прежде чем добавить канал, проверить на уникальность имени
+    socket.volatile.emit('newChannel', value);
   };
   return (
     <Formik
       initialValues={initValues}
       validationSchema={initSchema(t)}
-      onSubmit={handleAddChannel}
+      onSubmit={handleForm}
       validateOnChange={false}
       validateOnBlur={false}
     >
