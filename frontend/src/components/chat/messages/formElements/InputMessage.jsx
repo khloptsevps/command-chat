@@ -2,13 +2,16 @@ import React, { useEffect, useRef } from 'react';
 import { Form } from 'react-bootstrap';
 import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';
+import myPropTypes from '../../../../utils/propTypes';
 
 const InputMessage = ({ ...props }) => {
   const { t } = useTranslation();
   const input = useRef(null);
   useEffect(() => {
-    input.current?.focus();
-  }, []);
+    if (!props.disabled) {
+      input.current?.focus();
+    }
+  }, [props.disabled]);
   const [field] = useField(props);
   return (
     <Form.Control
@@ -20,6 +23,10 @@ const InputMessage = ({ ...props }) => {
       {...props}
     />
   );
+};
+
+InputMessage.propTypes = {
+  disabled: myPropTypes.boolean.isRequired,
 };
 
 export default InputMessage;
