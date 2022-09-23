@@ -30,9 +30,7 @@ rules:
   import/extensions: 0
   react/jsx-props-no-spreading: off
   no-console: off
-  object-curly-newline:
-    - error
-    - ImportDeclaration: never
+  object-curly-newline: 0
   comma-dangle: 0
   no-param-reassign:
     - error
