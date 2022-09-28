@@ -10,7 +10,7 @@ const ChannelsList = () => {
   return (
     <Col className="col-4 col-md-2 border-end pt-5 px-0 bg-light">
       <ChannelsHeader />
-      <Nav as="ul" fill variant="pills" className="px-2">
+      <Nav as="ul" fill variant="pills" className="px-2 flex-column">
         {channels.map(({ id, name, removable }) => (
           <ChannelsItem key={id} id={id} name={name} removable={removable} />
         ))}
