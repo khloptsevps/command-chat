@@ -6,12 +6,6 @@ import AddChannelSvg from '../../svg/AddChannelSvg.jsx';
 import { openModal } from '../../../slices/modalSlice.js';
 import useModal from '../../../utils/hooks/useModal.jsx';
 
-// TODO 3
-// Реализуйте удаление канала (с подтверждением).
-// Удаляться могут только вновь созданные каналы.
-// При удалении канала должны удаляться и его сообщения, а пользователи,
-// находящиеся в удаляемом канале, должны быть перемещены в дефолтный канал;
-
 // TODO 4
 // Реализуйте переименование канала (внутри модального окна).
 // Имена каналов не должны повторяться;
@@ -26,7 +20,7 @@ const ChannelsHeader = () => {
   const { setType } = useModal();
   const dispatch = useDispatch();
   const buttonHandler = () => {
-    dispatch(openModal({ isOpened: true, type: 'addChannel' }));
+    dispatch(openModal({ isOpened: true, type: 'addChannel', extra: null }));
     setType('addChannel');
   };
 
