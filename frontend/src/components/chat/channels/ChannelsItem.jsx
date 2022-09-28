@@ -6,6 +6,14 @@ import { switchChannel } from '../../../slices/channelsSlice.js';
 import { openModal } from '../../../slices/modalSlice.js';
 import useModal from '../../../utils/hooks/useModal.jsx';
 
+// TODO 3
+// Реализуйте удаление канала (с подтверждением).
+// Удаляться могут только вновь созданные каналы.
+// При удалении канала должны удаляться и его сообщения, а пользователи,
+// находящиеся в удаляемом канале, должны быть перемещены в дефолтный канал;
+
+// TODO Fix buttons texts
+
 const ChannelsItem = ({ id, name, removable }) => {
   const { setType } = useModal();
   const dispatch = useDispatch();
@@ -19,9 +27,16 @@ const ChannelsItem = ({ id, name, removable }) => {
   };
 
   const removeButtonHandler = () => {
-    dispatch(openModal({ isOpened: true, type: 'removeChannel' }));
+    dispatch(
+      openModal({
+        isOpened: true,
+        type: 'removeChannel',
+        extra: { currId: id },
+      })
+    );
     setType('removeChannel');
   };
+
   return !removable ? (
     <Nav.Item key={id} as="li" className="w-100">
       <Button
