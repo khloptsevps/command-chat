@@ -2,16 +2,23 @@ import React, { useEffect, useRef } from 'react';
 import { Form } from 'react-bootstrap';
 import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import myPropTypes from '../../../../utils/propTypes';
 
 const InputMessage = ({ ...props }) => {
   const { t } = useTranslation();
+  const currentChannelId = useSelector(
+    (state) => state.channels.currentChannelId
+  );
   const input = useRef(null);
   useEffect(() => {
     if (!props.disabled) {
       input.current?.focus();
     }
   }, [props.disabled]);
+  useEffect(() => {
+    input.current?.focus();
+  }, [currentChannelId]);
   const [field] = useField(props);
   return (
     <Form.Control
