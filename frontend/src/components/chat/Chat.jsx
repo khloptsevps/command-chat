@@ -7,7 +7,7 @@ import MessagesForm from './messages/MessagesForm.jsx';
 import MyModal from '../modals/MyModal.jsx';
 import ModalProvider from '../providers/ModalProvider.jsx';
 import socket from '../../utils/socket.js';
-import { addChannel } from '../../slices/channelsSlice.js';
+import { addChannel, removeChannel } from '../../slices/channelsSlice.js';
 import { addMessage } from '../../slices/messagesSlice.js';
 
 const setSubscribes = () => {
@@ -19,11 +19,16 @@ const setSubscribes = () => {
     const messagesListener = (payload) => {
       dispatch(addMessage(payload));
     };
+    const removeChannelListener = (payload) => {
+      dispatch(removeChannel(payload.id));
+    };
     socket.on('newMessage', messagesListener);
     socket.on('newChannel', channelsListener);
+    socket.on('removeChannel', removeChannelListener);
     return () => {
       socket.off('newMessage', messagesListener);
       socket.off('newChannel', channelsListener);
+      socket.off('removeChannel', removeChannelListener);
     };
   }, [socket]);
 };
