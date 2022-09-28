@@ -12,12 +12,6 @@ import {
 } from '../../../../slices/channelsSlice.js';
 import toasts from '../../../../utils/toasts.js';
 
-/* TODO 1
- **  Реализуйте добавление нового канала.
- **  Имена каналов не должны повторяться.
- **  Создатель канала должен быть перемещён в добавленный канал;
- */
-
 const initSchema = (t, channelsNames) =>
   Yup.object({
     name: Yup.string()
