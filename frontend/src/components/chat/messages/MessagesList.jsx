@@ -17,6 +17,9 @@ const MessagesList = () => {
   const currenChannelMessages = messages.filter(
     (message) => message.channelId === currentChannelId
   );
+  if (!currentChannel) {
+    return null;
+  }
 
   return (
     <>
