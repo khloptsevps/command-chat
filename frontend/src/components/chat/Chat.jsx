@@ -7,13 +7,17 @@ import MessagesForm from './messages/MessagesForm.jsx';
 import MyModal from '../modals/MyModal.jsx';
 import ModalProvider from '../providers/ModalProvider.jsx';
 import socket from '../../utils/socket.js';
-import { addChannel, removeChannel } from '../../slices/channelsSlice.js';
+import {
+  addChannel,
+  removeChannel,
+  renameChannel,
+} from '../../slices/channelsSlice.js';
 import { addMessage } from '../../slices/messagesSlice.js';
 
 const setSubscribes = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    const channelsListener = (payload) => {
+    const addChannelListener = (payload) => {
       dispatch(addChannel(payload));
     };
     const messagesListener = (payload) => {
@@ -22,13 +26,18 @@ const setSubscribes = () => {
     const removeChannelListener = (payload) => {
       dispatch(removeChannel(payload.id));
     };
+    const renameChannelListener = (payload) => {
+      dispatch(renameChannel(payload));
+    };
     socket.on('newMessage', messagesListener);
-    socket.on('newChannel', channelsListener);
+    socket.on('newChannel', addChannelListener);
     socket.on('removeChannel', removeChannelListener);
+    socket.on('renameChannel', renameChannelListener);
     return () => {
       socket.off('newMessage', messagesListener);
-      socket.off('newChannel', channelsListener);
+      socket.off('newChannel', addChannelListener);
       socket.off('removeChannel', removeChannelListener);
+      socket.off('renameChannel', renameChannelListener);
     };
   }, [socket]);
 };
