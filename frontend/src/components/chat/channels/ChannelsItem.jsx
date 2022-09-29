@@ -1,14 +1,14 @@
 import React from 'react';
 import { Nav, Button, Dropdown, ButtonGroup } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import myPropTypes from '../../../utils/propTypes.js';
 import { switchChannel } from '../../../slices/channelsSlice.js';
 import { openModal } from '../../../slices/modalSlice.js';
 import useModal from '../../../utils/hooks/useModal.jsx';
 
-// TODO Fix buttons texts
-
 const ChannelsItem = ({ id, name, removable }) => {
+  const { t } = useTranslation();
   const { setType } = useModal();
   const dispatch = useDispatch();
   const currentChannelId = useSelector(
@@ -65,9 +65,11 @@ const ChannelsItem = ({ id, name, removable }) => {
           </Button>
           <Dropdown.Toggle split variant={variant} />
           <Dropdown.Menu>
-            <Dropdown.Item onClick={removeButtonHandler}>Удалить</Dropdown.Item>
+            <Dropdown.Item onClick={removeButtonHandler}>
+              {t('pages.chat.channels.buttons.remove')}
+            </Dropdown.Item>
             <Dropdown.Item onClick={renameButtonHandler}>
-              Переименовать
+              {t('pages.chat.channels.buttons.rename')}
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
