@@ -4,6 +4,7 @@ import useModal from '../../utils/hooks/useModal.jsx';
 import { switchChannel } from '../../slices/channelsSlice.js';
 import ModalForm from './forms/ModalForm.jsx';
 import socket from '../../utils/socket.js';
+import myToasts from '../../utils/toasts.js';
 
 const AddChannel = () => {
   const [disabled, setDisabled] = useState(false);
@@ -19,6 +20,7 @@ const AddChannel = () => {
         const newChannelId = { id: data.id };
         dispatch(switchChannel(newChannelId));
         handleClose();
+        myToasts({ type: 'success', text: 'Канал добавлен' });
       }
     });
   };
