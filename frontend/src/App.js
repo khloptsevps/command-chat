@@ -14,7 +14,17 @@ const App = () => (
       </MyRoutes>
       <Footer />
     </div>
-    <ToastContainer pauseOnFocusLoss={false} />
+    <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss={false}
+      draggable
+      pauseOnHover
+    />
   </AuthProvider>
 );
 
