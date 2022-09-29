@@ -1,14 +1,12 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import React from 'react';
-import { Form } from 'formik';
 import { Button } from 'react-bootstrap';
+import { Form } from 'formik';
 import { useTranslation } from 'react-i18next';
-import MyTextInput from '../MyTextInput.jsx';
 import useModal from '../../../utils/hooks/useModal.jsx';
-import myPropTypes from '../../../utils/propTypes.js';
+import MyTextInput from '../../forms/MyTextInput.jsx';
 
-const ModalForm = ({ errors, isValid, disabled }) => {
+const MyForm = ({ errors, isValid, disabled }) => {
   const { t } = useTranslation();
   const { type, handleClose } = useModal();
   return (
@@ -41,10 +39,4 @@ const ModalForm = ({ errors, isValid, disabled }) => {
   );
 };
 
-ModalForm.propTypes = {
-  errors: myPropTypes.object.isRequired,
-  isValid: myPropTypes.boolean.isRequired,
-  disabled: myPropTypes.boolean.isRequired,
-};
-
-export default ModalForm;
+export default MyForm;
