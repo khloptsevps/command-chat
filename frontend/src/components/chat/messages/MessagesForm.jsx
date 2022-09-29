@@ -1,52 +1,20 @@
 import { Formik, Form } from 'formik';
 import React, { useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import { useTranslation } from 'react-i18next';
 import useAuth from '../../../utils/hooks/useAuth.jsx';
 import socket from '../../../utils/socket.js';
 import SendButton from './formElements/SendButton.jsx';
 import InputMessage from './formElements/InputMessage.jsx';
 
-const handleErrorEffect = (
-  networkError,
-  setNetworkError,
-  setInputDisabled,
-  t
-) => {
-  useEffect(() => {
-    const id = !networkError
-      ? null
-      : toast.loading(t('pages.chat.messages.form.errors.network'));
-    socket.io.on('error', () => {
-      setNetworkError(true);
-    });
-    socket.io.on('reconnect', () => {
-      setNetworkError(false);
-      setInputDisabled(false);
-      toast.update(id, {
-        render: t('pages.chat.messages.form.errors.reconnect'),
-        type: 'success',
-        isLoading: false,
-        autoClose: 5000,
-      });
-    });
-  }, [networkError]);
-};
-
 const MessagesForm = () => {
-  const { t } = useTranslation();
   const channelId = useSelector((state) => state.channels.currentChannelId);
   const { username } = useAuth();
   const [inputDisabled, setInputDisabled] = useState(false);
   const element = useRef(null);
-  const [networkError, setNetworkError] = useState(false);
 
   useEffect(() => {
     element.current?.reset();
   }, [inputDisabled]);
-
-  handleErrorEffect(networkError, setNetworkError, setInputDisabled, t);
 
   const onSubmit = (v) => {
     const message = {
