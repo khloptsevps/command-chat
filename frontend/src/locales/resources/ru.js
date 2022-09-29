@@ -4,6 +4,11 @@ export default {
       title: 'Hexlet Chat',
       button: 'Выйти',
     },
+    toasts: {
+      channelAdded: 'Канал создан',
+      channelRenamed: 'Канал переименован',
+      channelRemoved: 'Канал удален',
+    },
     pages: {
       login: {
         imageAlt: 'Войти',
