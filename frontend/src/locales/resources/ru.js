@@ -57,6 +57,7 @@ export default {
           },
           renameChannel: {
             title: 'Переименовать канал',
+            label: 'Введите новое имя канала',
           },
           removeChannel: {
             title: 'Удалить канал',
