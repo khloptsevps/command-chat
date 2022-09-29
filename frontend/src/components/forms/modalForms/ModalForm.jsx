@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Form } from 'formik';
 import { Button } from 'react-bootstrap';
@@ -6,7 +8,7 @@ import MyTextInput from '../MyTextInput.jsx';
 import useModal from '../../../utils/hooks/useModal.jsx';
 import myPropTypes from '../../../utils/propTypes.js';
 
-const ModalForm = ({ errors, isValid }) => {
+const ModalForm = ({ errors, isValid, disabled }) => {
   const { t } = useTranslation();
   const { type, handleClose } = useModal();
   return (
@@ -19,6 +21,7 @@ const ModalForm = ({ errors, isValid }) => {
         id="name"
         isInvalid={!isValid}
         className="mb-2"
+        disabled={disabled}
       >
         <div className="invalid-feedback">{errors.name}</div>
         <div className="d-flex justify-content-end">
@@ -29,7 +32,7 @@ const ModalForm = ({ errors, isValid }) => {
           >
             {t('pages.chat.modals.buttons.chancel')}
           </Button>
-          <Button className="mt-2" type="submit">
+          <Button className="mt-2" type="submit" disabled={disabled}>
             {t('pages.chat.modals.buttons.send')}
           </Button>
         </div>
@@ -41,6 +44,7 @@ const ModalForm = ({ errors, isValid }) => {
 ModalForm.propTypes = {
   errors: myPropTypes.object.isRequired,
   isValid: myPropTypes.boolean.isRequired,
+  disabled: myPropTypes.boolean.isRequired,
 };
 
 export default ModalForm;
