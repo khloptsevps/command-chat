@@ -16,8 +16,8 @@ const AddChannelForm = () => {
     name: '',
   };
   const handleForm = (value) => {
+    setDisabled(true);
     socket.volatile.emit('newChannel', value, ({ data, status }) => {
-      setDisabled(true);
       if (status === 'ok') {
         const newChannelId = { id: data.id };
         dispatch(switchChannel(newChannelId));
