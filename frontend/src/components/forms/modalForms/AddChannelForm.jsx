@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import ModalForm from './ModalForm.jsx';
@@ -9,17 +9,21 @@ import initSchema from './modalFormValidation.js';
 import toasts from '../../../utils/toasts.js';
 
 const AddChannelForm = () => {
+  const [disabled, setDisabled] = useState(false);
   const dispatch = useDispatch();
   const { handleClose } = useModal();
   const initValues = {
     name: '',
   };
   const handleForm = (value) => {
-    socket.volatile.emit('newChannel', value, ({ data }) => {
-      const newChannelId = { id: data.id };
-      dispatch(switchChannel(newChannelId));
-      handleClose();
-      toasts.channelAdd();
+    socket.volatile.emit('newChannel', value, ({ data, status }) => {
+      setDisabled(true);
+      if (status === 'ok') {
+        const newChannelId = { id: data.id };
+        dispatch(switchChannel(newChannelId));
+        handleClose();
+        toasts.channelAdd();
+      }
     });
   };
   return (
@@ -30,7 +34,9 @@ const AddChannelForm = () => {
       validateOnChange={false}
       validateOnBlur={false}
     >
-      {({ errors, isValid }) => <ModalForm errors={errors} isValid={isValid} />}
+      {({ errors, isValid }) => (
+        <ModalForm errors={errors} isValid={isValid} disabled={disabled} />
+      )}
     </Formik>
   );
 };
