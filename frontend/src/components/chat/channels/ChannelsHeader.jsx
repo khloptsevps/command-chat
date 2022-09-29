@@ -6,15 +6,6 @@ import AddChannelSvg from '../../svg/AddChannelSvg.jsx';
 import { openModal } from '../../../slices/modalSlice.js';
 import useModal from '../../../utils/hooks/useModal.jsx';
 
-// TODO 4
-// Реализуйте переименование канала (внутри модального окна).
-// Имена каналов не должны повторяться;
-
-// TODO 5
-// Отправка формы в модальных окнах должна работать не только по клику по кнопке, но и при нажатии Enter;
-
-// Имена каналов в списке должны быть с префиксом # (решетка и пробел). Например: # test channel
-
 const ChannelsHeader = () => {
   const { t } = useTranslation();
   const { setType } = useModal();
