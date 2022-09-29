@@ -27,6 +27,10 @@ export default {
       chat: {
         channels: {
           title: 'Каналы',
+          buttons: {
+            remove: 'Удалить',
+            rename: 'Переименовать',
+          },
         },
         messages: {
           form: {
