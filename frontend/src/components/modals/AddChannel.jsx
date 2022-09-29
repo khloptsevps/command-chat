@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import useModal from '../../utils/hooks/useModal.jsx';
 import { switchChannel } from '../../slices/channelsSlice.js';
 import ModalForm from './forms/ModalForm.jsx';
@@ -8,6 +9,8 @@ import myToasts from '../../utils/toasts.js';
 
 const AddChannel = () => {
   const [disabled, setDisabled] = useState(false);
+  const { t } = useTranslation();
+  const text = t('toasts.channelAdded');
   const dispatch = useDispatch();
   const { handleClose } = useModal();
   const initValues = {
@@ -17,10 +20,9 @@ const AddChannel = () => {
     setDisabled(true);
     socket.volatile.emit('newChannel', value, ({ data, status }) => {
       if (status === 'ok') {
-        const newChannelId = { id: data.id };
-        dispatch(switchChannel(newChannelId));
+        dispatch(switchChannel({ id: data.id }));
         handleClose();
-        myToasts({ type: 'success', text: 'Канал добавлен' });
+        myToasts({ type: 'success', text });
       }
     });
   };
