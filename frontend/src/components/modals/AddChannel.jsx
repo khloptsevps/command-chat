@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import AddChannelForm from '../forms/modalForms/addChannelForm/AddChannelForm.jsx';
+import AddChannelForm from '../forms/modalForms/AddChannelForm.jsx';
 
 const AddChannel = () => {
   const { t } = useTranslation();
