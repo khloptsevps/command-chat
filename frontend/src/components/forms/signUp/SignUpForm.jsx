@@ -1,17 +1,19 @@
 import React, { useEffect, useRef } from 'react';
-import { Form } from 'formik';
+import { Form as FormikForm } from 'formik';
+import { Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import SignUpField from './SignUpField.jsx';
 import MyButton from '../MyButton.jsx';
+import myPropTypes from '../../../utils/propTypes.js';
 
-const SignUpForm = () => {
+const SignUpForm = ({ isUserExist, ...props }) => {
   const { t } = useTranslation();
   const ref = useRef();
   useEffect(() => {
-    ref.current?.focus();
-  }, []);
+    ref.current?.select();
+  }, [isUserExist]);
   return (
-    <Form className="col-12 col-md-6 mt-3 mt-mb-0">
+    <FormikForm className="col-12 col-md-6 mt-3 mt-mb-0">
       <h1 className="text-center mb-4">{t('pages.signUp.form.title')}</h1>
       <SignUpField
         ref={ref}
@@ -19,6 +21,8 @@ const SignUpForm = () => {
         name="username"
         type="text"
         placeholder="От 3 до 20 символов"
+        isUserExist={isUserExist}
+        {...props}
       />
       <SignUpField
         label="Пароль"
@@ -26,6 +30,8 @@ const SignUpForm = () => {
         type="password"
         placeholder="Не менее 6 символов"
         autoComplete="new-password"
+        isUserExist={isUserExist}
+        {...props}
       />
       <SignUpField
         label="Подтвердите пароль"
@@ -33,12 +39,24 @@ const SignUpForm = () => {
         type="password"
         placeholder="Пароли должны совпадать"
         autoComplete="new-password"
-      />
-      <MyButton className="w-100 mb-3 mt-3">
+        isUserExist={isUserExist}
+        {...props}
+      >
+        {isUserExist && (
+          <Form.Control.Feedback type="invalid" tooltip>
+            {t('pages.signUp.form.errors.userExist')}
+          </Form.Control.Feedback>
+        )}
+      </SignUpField>
+      <MyButton className="w-100 mb-3 mt-4" {...props}>
         {t('pages.signUp.form.button')}
       </MyButton>
-    </Form>
+    </FormikForm>
   );
+};
+
+SignUpForm.propTypes = {
+  isUserExist: myPropTypes.boolean,
 };
 
 export default SignUpForm;
