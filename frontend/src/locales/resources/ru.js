@@ -15,6 +15,11 @@ export default {
         form: {
           title: 'Регистрация',
           button: 'Зарегистрироваться',
+          labels: {
+            username: 'Имя пользователя',
+            password: 'Пароль',
+            confirmPassword: 'Подтвердите пароль',
+          },
           errors: {
             requared: 'Обязательное поле',
             min: 'Не менее 6 символов',
