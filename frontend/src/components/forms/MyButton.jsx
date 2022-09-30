@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import myPropTypes from '../../../utils/propTypes.js';
+import myPropTypes from '../../utils/propTypes.js';
 
 const MyButton = ({ children }) => (
   <Button className="w-100 mb-3 mt-5" variant="outline-primary" type="submit">
