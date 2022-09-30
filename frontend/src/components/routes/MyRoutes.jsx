@@ -3,6 +3,7 @@ import { BrowserRouter, Outlet, Routes, Route } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute.jsx';
 import ChatPage from '../../pages/ChatPage.jsx';
 import LoginPage from '../../pages/LoginPage.jsx';
+import SignUpPage from '../../pages/SignUpPage.jsx';
 import NotFoundPage from '../../pages/NotFoundPage.jsx';
 import myPropTypes from '../../utils/propTypes.js';
 
@@ -20,6 +21,7 @@ const MyRoutes = ({ children }) => (
         }
       />
       <Route path="login" element={<LoginPage />} />
+      <Route path="signup" element={<SignUpPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   </BrowserRouter>
