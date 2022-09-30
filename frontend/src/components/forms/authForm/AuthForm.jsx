@@ -58,7 +58,9 @@ const AuthForm = () => {
             <div className="invalid-tooltip">{t('pages.login.form.error')}</div>
           ) : null}
         </MyTextInput>
-        <MyButton>{t('pages.login.form.button')}</MyButton>
+        <MyButton className="w-100 mb-3 mt-5">
+          {t('pages.login.form.button')}
+        </MyButton>
       </Form>
     </Formik>
   );
