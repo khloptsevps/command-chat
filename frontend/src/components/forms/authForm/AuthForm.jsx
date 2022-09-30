@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import routes from '../../../utils/routes.js';
 import useAuth from '../../../utils/hooks/useAuth.jsx';
-import MyButton from './MyButton.jsx';
+import MyButton from '../MyButton.jsx';
 import MyTextInput from '../MyTextInput.jsx';
 import storage from '../../../utils/storage.js';
 
