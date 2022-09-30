@@ -10,6 +10,18 @@ export default {
       channelRemoved: 'Канал удален',
     },
     pages: {
+      signUp: {
+        imageAlt: 'Регистрация',
+        form: {
+          title: 'Регистрация',
+          button: 'Зарегистрироваться',
+          errors: {
+            requared: 'Обязательное поле',
+            min: 'Не менее 6 символов',
+            passwordsDoesMutch: 'Пароли должны совпадать',
+          },
+        },
+      },
       login: {
         imageAlt: 'Войти',
         footer: {
