@@ -20,6 +20,7 @@ export default async () => {
   leoProfanity.add(leoProfanity.getDictionary('en'));
   leoProfanity.add(leoProfanity.getDictionary('ru'));
   const isProduction = process.env.NODE_ENV === 'production';
+  console.log(process.env);
   const rollbarConfig = {
     enabled: isProduction,
     accessToken: process.env.ROLLBAR_TOKEN,
