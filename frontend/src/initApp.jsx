@@ -4,8 +4,15 @@ import { initReactI18next, I18nextProvider } from 'react-i18next';
 import leoProfanity from 'leo-profanity';
 import { Provider } from 'react-redux';
 import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
+import { io } from 'socket.io-client';
 import store from './slices/store';
 import ru from './locales/resources/ru';
+import {
+  addChannel,
+  removeChannel,
+  renameChannel,
+} from './slices/channelsSlice.js';
+import { addMessage } from './slices/messagesSlice.js';
 import App from './App.js';
 
 export default async () => {
@@ -20,13 +27,29 @@ export default async () => {
   leoProfanity.add(leoProfanity.getDictionary('en'));
   leoProfanity.add(leoProfanity.getDictionary('ru'));
   const isProduction = process.env.NODE_ENV === 'production';
-  console.log(process.env);
   const rollbarConfig = {
     enabled: isProduction,
     accessToken: process.env.REACT_APP_ROLLBAR_TOKEN,
     captureUncaught: true,
     captureUnhandledRejections: true,
   };
+  const socket = io();
+  const addChannelListener = (payload) => {
+    store.dispatch(addChannel(payload));
+  };
+  const messagesListener = (payload) => {
+    store.dispatch(addMessage(payload));
+  };
+  const removeChannelListener = (payload) => {
+    store.dispatch(removeChannel(payload.id));
+  };
+  const renameChannelListener = (payload) => {
+    store.dispatch(renameChannel(payload));
+  };
+  socket.on('newMessage', messagesListener);
+  socket.on('newChannel', addChannelListener);
+  socket.on('removeChannel', removeChannelListener);
+  socket.on('renameChannel', renameChannelListener);
   const app = (
     <Provider store={store}>
       <I18nextProvider i18n={i18n}>
