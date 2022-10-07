@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import i18next from 'i18next';
 import { initReactI18next, I18nextProvider } from 'react-i18next';
@@ -18,6 +19,14 @@ export default async () => {
   });
   leoProfanity.add(leoProfanity.getDictionary('en'));
   leoProfanity.add(leoProfanity.getDictionary('ru'));
+  const isProduction = process.env.NODE_ENV === 'production';
+  console.log(process.env);
+  const rollbarConfig = {
+    enabled: isProduction,
+    accessToken: process.env.ROLLBAR_TOKEN,
+    captureUncaught: true,
+    captureUnhandledRejections: true,
+  };
   const app = (
     <Provider store={store}>
       <I18nextProvider i18n={i18n}>
