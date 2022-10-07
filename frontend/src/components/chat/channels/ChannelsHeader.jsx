@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import AddChannelSvg from '../../svg/AddChannelSvg.jsx';
+import AddChannelSvg from '../../../__assets__/svg/AddChannelSvg.jsx';
 import { openModal } from '../../../slices/modalSlice.js';
 import useModal from '../../../utils/hooks/useModal.jsx';
 

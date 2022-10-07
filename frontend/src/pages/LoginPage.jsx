@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link, useLocation, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import loginImage from '../__assets__/images/signIn.svg';
+import loginImage from '../__assets__/svg/signIn.svg';
 import CardContainer from '../components/cardContainer/CardContainer.jsx';
 import MyImage from '../components/image/MyImage.jsx';
 import useAuth from '../utils/hooks/useAuth.jsx';

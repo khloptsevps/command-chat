@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import notFound from '../__assets__/images/notFound.svg';
+import notFound from '../__assets__/svg/notFound.svg';
 
 const NotFoundPage = () => {
   const { t } = useTranslation();
