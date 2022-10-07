@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useRef } from 'react';
+import filter from 'leo-profanity';
 import myPropTypes from '../../../utils/propTypes';
 
 const MessagesItem = ({ username, body }) => {
@@ -9,7 +11,7 @@ const MessagesItem = ({ username, body }) => {
   return (
     <div ref={ref} className="text-break mb-2">
       <b>{username}</b>
-      {`: ${body}`}
+      {`: ${filter.clean(body)}`}
     </div>
   );
 };

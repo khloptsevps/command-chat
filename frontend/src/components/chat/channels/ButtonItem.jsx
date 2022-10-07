@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
+import filter from 'leo-profanity';
 import { switchChannel } from '../../../slices/channelsSlice.js';
 import myPropTypes from '../../../utils/propTypes.js';
 
@@ -16,7 +17,7 @@ const ButtonItem = ({ id, name, ...props }) => {
       onClick={handleSwitchChannel}
     >
       <span className="me-1">#</span>
-      {name}
+      {filter.clean(name)}
     </Button>
   );
 };
