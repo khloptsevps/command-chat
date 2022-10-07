@@ -23,7 +23,11 @@ const DropdownButtonItem = ({ id, children, ...props }) => {
   return (
     <Dropdown as={ButtonGroup} className="d-flex">
       {children}
-      <Dropdown.Toggle split {...props} />
+      <Dropdown.Toggle split {...props}>
+        <span className="visually-hidden">
+          {t('pages.chat.channels.buttons.control')}
+        </span>
+      </Dropdown.Toggle>
       <Dropdown.Menu>
         <Dropdown.Item onClick={removeButtonHandler}>
           {t('pages.chat.channels.buttons.remove')}

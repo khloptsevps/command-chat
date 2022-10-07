@@ -55,6 +55,7 @@ export default {
           buttons: {
             remove: 'Удалить',
             rename: 'Переименовать',
+            control: 'Управление каналом',
           },
         },
         messages: {
