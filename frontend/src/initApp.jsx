@@ -23,7 +23,7 @@ export default async () => {
   console.log(process.env);
   const rollbarConfig = {
     enabled: isProduction,
-    accessToken: process.env.ROLLBAR_TOKEN,
+    accessToken: process.env.REACT_APP_ROLLBAR_TOCKEN,
     captureUncaught: true,
     captureUnhandledRejections: true,
   };
