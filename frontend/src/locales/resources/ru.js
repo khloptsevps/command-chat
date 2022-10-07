@@ -7,7 +7,7 @@ export default {
     toasts: {
       channelAdded: 'Канал создан',
       channelRenamed: 'Канал переименован',
-      channelRemoved: 'Канал удален',
+      channelRemoved: 'Канал удалён',
     },
     pages: {
       signUp: {
