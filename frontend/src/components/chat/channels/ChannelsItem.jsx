@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { Nav } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
@@ -6,7 +7,7 @@ import DropdownButtonItem from './DropdownButtonItem.jsx';
 
 const ChannelsItem = ({ id, removable, ...props }) => {
   const currentChannelId = useSelector(
-    (state) => state.channels.currentChannelId
+    (state) => state.channels.currentChannelId,
   );
   const variant = currentChannelId === id ? 'info' : 'light';
 

@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
       logOut,
       username: storage.getItemData().username,
     }),
-    [loggedIn]
+    [loggedIn],
   );
 
   return (

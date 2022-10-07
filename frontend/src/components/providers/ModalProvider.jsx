@@ -7,13 +7,18 @@ import { channelsSelectors } from '../../slices/channelsSlice.js';
 const ModalProvider = ({ children }) => {
   const [type, setType] = useState(null);
   const channelsNames = useSelector(channelsSelectors.selectAll).map(
-    ({ name }) => name
+    ({ name }) => name,
   );
   const dispatch = useDispatch();
   const handleClose = () => {
     dispatch(closeModal({ isOpened: false, type: null }));
   };
-  const contextValue = { type, handleClose, setType, channelsNames };
+  const contextValue = {
+    type,
+    handleClose,
+    setType,
+    channelsNames
+  };
   return (
     <ModalContext.Provider value={contextValue}>
       {children}
