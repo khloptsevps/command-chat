@@ -4,7 +4,10 @@ import { useTranslation } from 'react-i18next';
 const initSchema = () => {
   const { t } = useTranslation();
   return Yup.object({
-    username: Yup.string().required(t('pages.signUp.form.errors.requared')),
+    username: Yup.string()
+      .required(t('pages.signUp.form.errors.requared'))
+      .min(3, t('pages.signUp.form.errors.minMax'))
+      .max(20, t('pages.signUp.form.errors.minMax')),
     password: Yup.string()
       .required(t('pages.signUp.form.errors.requared'))
       .min(6, t('pages.signUp.form.errors.min')),

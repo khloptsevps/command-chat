@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import filter from 'leo-profanity';
 import ChannelsList from './channels/ChannelsList.jsx';
 import MessagesList from './messages/MessagesList.jsx';
 import MessagesForm from './messages/MessagesForm.jsx';
@@ -14,9 +13,6 @@ import {
   renameChannel,
 } from '../../slices/channelsSlice.js';
 import { addMessage } from '../../slices/messagesSlice.js';
-
-filter.add(filter.getDictionary('en'));
-filter.add(filter.getDictionary('ru'));
 
 const setSubscribes = () => {
   const dispatch = useDispatch();
