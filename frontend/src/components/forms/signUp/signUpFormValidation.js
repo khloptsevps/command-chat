@@ -18,4 +18,3 @@ const initSchema = () => {
 };
 
 export default initSchema;
-// TODO add validation schema
