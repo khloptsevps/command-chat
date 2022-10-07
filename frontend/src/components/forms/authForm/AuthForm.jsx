@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,6 +9,7 @@ import useAuth from '../../../utils/hooks/useAuth.jsx';
 import MyButton from '../MyButton.jsx';
 import MyTextInput from '../MyTextInput.jsx';
 import storage from '../../../utils/storage.js';
+import myToasts from '../../../utils/toasts.js';
 
 const AuthForm = () => {
   const [authFailed, setAuthFailed] = useState(false);
@@ -18,19 +20,24 @@ const AuthForm = () => {
     username: '',
     password: '',
   };
-  const authHandler = async (values, { resetForm, setSubmitting }) => {
+  const authHandler = async (values, { setSubmitting }) => {
     try {
       setAuthFailed(false);
       const response = await axios.post(routes.signInPath(), values);
       storage.setItem(response.data);
-      resetForm();
       auth.logIn();
       navigate('/');
     } catch (error) {
-      console.log(error);
+      console.error('Error:', error);
       setSubmitting(false);
-      if (error.isAxiosError && error.response.status === 401) {
+      if (error.response.status === 401) {
         setAuthFailed(true);
+      }
+      if (!error.response.status) {
+        myToasts({
+          type: 'netWorkError',
+          text: t('pages.login.form.networkError'),
+        });
       }
     }
   };
