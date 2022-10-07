@@ -8,7 +8,6 @@ import routes from '../../utils/routes.js';
 import storage from '../../utils/storage.js';
 import useAuth from '../../utils/hooks/useAuth.jsx';
 
-// TODO Create Form
 const SignUp = () => {
   const [isUserExist, setIsUserExist] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
