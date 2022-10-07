@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { Form } from 'formik';
@@ -23,11 +22,7 @@ const MyForm = ({ errors, isValid, disabled }) => {
       >
         <div className="invalid-feedback">{errors.name}</div>
         <div className="d-flex justify-content-end">
-          <Button
-            className="me-2 mt-2"
-            variant="secondary"
-            onClick={handleClose}
-          >
+          <Button className="me-2 mt-2" variant="secondary" onClick={handleClose}>
             {t('pages.chat.modals.buttons.chancel')}
           </Button>
           <Button className="mt-2" type="submit" disabled={disabled}>

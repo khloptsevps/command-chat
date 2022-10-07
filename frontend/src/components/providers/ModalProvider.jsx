@@ -18,7 +18,7 @@ const ModalProvider = ({ children }) => {
     type,
     handleClose,
     setType,
-    channelsNames
+    channelsNames,
   };
   return (
     <ModalContext.Provider value={contextValue}>

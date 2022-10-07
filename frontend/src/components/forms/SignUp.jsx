@@ -53,10 +53,7 @@ const SignUp = () => {
           .min(6, t('pages.signUp.form.errors.min')),
         confirmPassword: Yup.string()
           .required(t('pages.signUp.form.errors.requared'))
-          .oneOf(
-            [Yup.ref('password'), null],
-            t('pages.signUp.form.errors.passwordsDoesMutch')
-          ),
+          .oneOf([Yup.ref('password'), null], t('pages.signUp.form.errors.passwordsDoesMutch')),
       })}
     >
       <SignUpForm isUserExist={isUserExist} disabled={isDisabled} />

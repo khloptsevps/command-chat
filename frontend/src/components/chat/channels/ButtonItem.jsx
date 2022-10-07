@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
@@ -9,9 +10,10 @@ const ButtonItem = ({ id, name, ...props }) => {
   const handleSwitchChannel = () => {
     dispatch(switchChannel({ id }));
   };
+  const { variant } = props;
   return (
     <Button
-      {...props}
+      variant={variant}
       className="w-100 rounded-0 text-start text-truncate"
       onClick={handleSwitchChannel}
     >

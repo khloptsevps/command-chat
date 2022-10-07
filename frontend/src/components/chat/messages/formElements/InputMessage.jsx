@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useRef } from 'react';
 import { Form } from 'react-bootstrap';
 import { useField } from 'formik';
@@ -5,10 +6,9 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 const InputMessage = ({ ...props }) => {
+  const { body, disabled } = props;
   const { t } = useTranslation();
-  const currentChannelId = useSelector(
-    (state) => state.channels.currentChannelId
-  );
+  const currentChannelId = useSelector((state) => state.channels.currentChannelId);
   const input = useRef(null);
   useEffect(() => {
     if (!props.disabled) {
@@ -25,8 +25,9 @@ const InputMessage = ({ ...props }) => {
       aria-label={t('pages.chat.messages.form.input.ariaLabel')}
       placeholder={t('pages.chat.messages.form.input.placeholder')}
       ref={input}
+      body={body}
+      disabled={disabled}
       {...field}
-      {...props}
     />
   );
 };

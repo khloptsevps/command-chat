@@ -1,10 +1,10 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import useModal from '../../../utils/hooks/useModal.jsx';
 
 const RemoveForm = (props) => {
+  const { variant, disabled, onClick } = props;
   const { t } = useTranslation();
   const { handleClose } = useModal();
   return (
@@ -14,7 +14,7 @@ const RemoveForm = (props) => {
         <Button onClick={handleClose} variant="secondary" className="me-2">
           {t('pages.chat.modals.buttons.chancel')}
         </Button>
-        <Button {...props} variant="danger">
+        <Button variant={variant} disabled={disabled} onClick={onClick}>
           {t('pages.chat.modals.buttons.remove')}
         </Button>
       </div>

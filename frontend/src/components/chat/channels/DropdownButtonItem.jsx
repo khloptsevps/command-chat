@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { openModal } from '../../../slices/modalSlice';
 import useModal from '../../../utils/hooks/useModal.jsx';
 
-const DropdownButtonItem = ({ id, children, ...props }) => {
+const DropdownButtonItem = ({ id, children, variant }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { setType } = useModal();
@@ -22,10 +22,8 @@ const DropdownButtonItem = ({ id, children, ...props }) => {
   return (
     <Dropdown as={ButtonGroup} className="d-flex">
       {children}
-      <Dropdown.Toggle split {...props}>
-        <span className="visually-hidden">
-          {t('pages.chat.channels.buttons.control')}
-        </span>
+      <Dropdown.Toggle split variant={variant}>
+        <span className="visually-hidden">{t('pages.chat.channels.buttons.control')}</span>
       </Dropdown.Toggle>
       <Dropdown.Menu>
         <Dropdown.Item onClick={removeButtonHandler}>

@@ -35,9 +35,7 @@ const channelsSlice = createSlice({
   },
 });
 
-export const channelsSelectors = channelsAdapter.getSelectors(
-  (state) => state.channels
-);
+export const channelsSelectors = channelsAdapter.getSelectors((state) => state.channels);
 export const {
   initChannels,
   switchChannel,
