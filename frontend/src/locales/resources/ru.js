@@ -40,6 +40,7 @@ export default {
           passwordLabel: 'Пароль',
           button: 'Войти',
           error: 'Неверные имя пользователя или пароль',
+          networkError: 'Ошибка соединения',
         },
       },
       notFound: {
