@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter,Outlet,Routes,Route} from 'react-router-dom';
+import { BrowserRouter, Outlet, Routes, Route } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute.jsx';
 import ChatPage from '../../pages/ChatPage.jsx';
 import LoginPage from '../../pages/LoginPage.jsx';
@@ -13,11 +13,11 @@ const MyRoutes = ({ children }) => (
     <Routes>
       <Route
         path="/"
-        element={(
+        element={
           <PrivateRoute>
             <ChatPage />
           </PrivateRoute>
-        )}
+        }
       />
       <Route path="login" element={<LoginPage />} />
       <Route path="signup" element={<SignUpPage />} />
