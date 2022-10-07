@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';

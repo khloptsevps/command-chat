@@ -13,7 +13,7 @@ const MyForm = ({ errors, isValid, disabled }) => {
     <Form>
       <MyTextInput
         label={t(`pages.chat.modals.${type}.label`)}
-        hideLabel={true}
+        hideLabel
         type="text"
         name="name"
         id="name"

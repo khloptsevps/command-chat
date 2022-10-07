@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { forwardRef } from 'react';
 import { Form, FloatingLabel } from 'react-bootstrap';
 import { useField } from 'formik';
@@ -9,7 +10,7 @@ const SignUpField = forwardRef(
     return (
       <FloatingLabel controlId={name} label={label} className="mb-3">
         <Form.Control
-          required={true}
+          required
           ref={ref}
           {...field}
           {...props}
