@@ -14,7 +14,7 @@ const RenameChannel = () => {
   const { handleClose } = useModal();
   const { extra } = useSelector((state) => state.modal);
   const currentChannel = useSelector(channelsSelectors.selectAll).find(
-    ({ id }) => id === extra.currId
+    ({ id }) => id === extra.currId,
   );
   const initValues = {
     name: currentChannel.name,

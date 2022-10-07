@@ -23,7 +23,7 @@ const ChatPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     fetchAndInitChatData(getAuthHeader, dispatch, setIsLoading);
-  }, []);
+  }, [dispatch, getAuthHeader]);
 
   return isLoading ? <Loader /> : <Chat />;
 };

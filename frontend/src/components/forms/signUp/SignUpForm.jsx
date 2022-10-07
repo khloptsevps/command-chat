@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import SignUpField from './SignUpField.jsx';
 import MyButton from '../MyButton.jsx';
 
-const SignUpForm = ({ isUserExist, ...props }) => {
+const SignUpForm = ({ isUserExist, disabled }) => {
   const { t } = useTranslation();
   const ref = useRef();
   useEffect(() => {
@@ -21,7 +21,7 @@ const SignUpForm = ({ isUserExist, ...props }) => {
         type="text"
         placeholder="От 3 до 20 символов"
         isUserExist={isUserExist}
-        {...props}
+        disabled={disabled}
       />
       <SignUpField
         label="Пароль"
@@ -30,7 +30,7 @@ const SignUpForm = ({ isUserExist, ...props }) => {
         placeholder="Не менее 6 символов"
         autoComplete="new-password"
         isUserExist={isUserExist}
-        {...props}
+        disabled={disabled}
       />
       <SignUpField
         label="Подтвердите пароль"
@@ -39,7 +39,7 @@ const SignUpForm = ({ isUserExist, ...props }) => {
         placeholder="Пароли должны совпадать"
         autoComplete="new-password"
         isUserExist={isUserExist}
-        {...props}
+        disabled={disabled}
       >
         {isUserExist && (
           <Form.Control.Feedback type="invalid" tooltip>
@@ -47,7 +47,7 @@ const SignUpForm = ({ isUserExist, ...props }) => {
           </Form.Control.Feedback>
         )}
       </SignUpField>
-      <MyButton className="w-100 mb-3 mt-4" {...props}>
+      <MyButton className="w-100 mb-3 mt-4" disabled={disabled}>
         {t('pages.signUp.form.button')}
       </MyButton>
     </FormikForm>

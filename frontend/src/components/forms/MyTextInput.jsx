@@ -17,7 +17,7 @@ const MyTextInput = ({
     if (props.type === 'text') {
       input.current?.select();
     }
-  }, []);
+  }, [props.type]);
   return (
     <FormGroup className={divGroupClasses}>
       <FormControl

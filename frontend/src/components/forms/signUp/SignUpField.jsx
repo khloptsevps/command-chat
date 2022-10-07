@@ -3,16 +3,23 @@ import { Form, FloatingLabel } from 'react-bootstrap';
 import { useField } from 'formik';
 
 const SignUpField = forwardRef(
-  ({ label, isUserExist, children, ...props }, ref) => {
+  ({
+    label, isUserExist, children, ...props
+  }, ref) => {
     const [field, meta] = useField(props);
-    const { name } = field;
+    const {
+      name, type, placeholder, autoComplete, disabled,
+    } = field;
+    console.log(field);
     return (
       <FloatingLabel controlId={name} label={label} className="mb-3">
         <Form.Control
           required
           ref={ref}
-          {...field}
-          {...props}
+          type={type}
+          placeholder={placeholder}
+          autoComplete={autoComplete}
+          disabled={disabled}
           isInvalid={(meta.touched && meta.error) || isUserExist}
         />
         {meta.error && (
@@ -23,7 +30,7 @@ const SignUpField = forwardRef(
         {children}
       </FloatingLabel>
     );
-  }
+  },
 );
 
 SignUpField.displayName = 'SignUpField';
