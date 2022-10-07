@@ -3,7 +3,6 @@ import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import filter from 'leo-profanity';
 import { switchChannel } from '../../../slices/channelsSlice.js';
-import myPropTypes from '../../../utils/propTypes.js';
 
 const ButtonItem = ({ id, name, ...props }) => {
   const dispatch = useDispatch();
@@ -20,11 +19,6 @@ const ButtonItem = ({ id, name, ...props }) => {
       {filter.clean(name)}
     </Button>
   );
-};
-
-ButtonItem.propTypes = {
-  id: myPropTypes.number.isRequired,
-  name: myPropTypes.string.isRequired,
 };
 
 export default ButtonItem;

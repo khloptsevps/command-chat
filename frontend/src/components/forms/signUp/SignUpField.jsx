@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react';
 import { Form, FloatingLabel } from 'react-bootstrap';
 import { useField } from 'formik';
-import myPropTypes from '../../../utils/propTypes.js';
 
 const SignUpField = forwardRef(
   ({ label, isUserExist, children, ...props }, ref) => {
@@ -28,11 +27,5 @@ const SignUpField = forwardRef(
 );
 
 SignUpField.displayName = 'SignUpField';
-
-SignUpField.propTypes = {
-  label: myPropTypes.string.isRequired,
-  isUserExist: myPropTypes.boolean,
-  children: myPropTypes.children,
-};
 
 export default SignUpField;

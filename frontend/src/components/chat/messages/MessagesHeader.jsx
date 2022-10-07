@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import myPropTypes from '../../../utils/propTypes';
 
 const MessagesHeader = ({ title, count }) => {
   const { t } = useTranslation();
@@ -17,8 +16,3 @@ const MessagesHeader = ({ title, count }) => {
 };
 
 export default MessagesHeader;
-
-MessagesHeader.propTypes = {
-  title: myPropTypes.string.isRequired,
-  count: myPropTypes.number.isRequired,
-};

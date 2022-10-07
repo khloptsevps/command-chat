@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useField } from 'formik';
 import { FormControl, FormGroup, FormLabel } from 'react-bootstrap';
-import myPropTypes from '../../utils/propTypes.js';
 
 const MyTextInput = ({
   label,
@@ -33,15 +32,6 @@ const MyTextInput = ({
       {children}
     </FormGroup>
   );
-};
-
-MyTextInput.propTypes = {
-  label: myPropTypes.string.isRequired,
-  hideLabel: myPropTypes.boolean,
-  divGroupClasses: myPropTypes.string,
-  name: myPropTypes.string.isRequired,
-  type: myPropTypes.string.isRequired,
-  children: myPropTypes.children,
 };
 
 export default MyTextInput;

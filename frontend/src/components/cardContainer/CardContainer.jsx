@@ -1,6 +1,5 @@
 import React from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
-import myPropTypes from '../../utils/propTypes.js';
 
 const CardContainer = ({ children }) => (
   <div className="container-fluid h-100">
@@ -11,13 +10,5 @@ const CardContainer = ({ children }) => (
     </Row>
   </div>
 );
-
-CardContainer.defaultProps = {
-  children: null,
-};
-
-CardContainer.propTypes = {
-  children: myPropTypes.children,
-};
 
 export default CardContainer;

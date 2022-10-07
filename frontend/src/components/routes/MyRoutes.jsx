@@ -5,7 +5,6 @@ import ChatPage from '../../pages/ChatPage.jsx';
 import LoginPage from '../../pages/LoginPage.jsx';
 import SignUpPage from '../../pages/SignUpPage.jsx';
 import NotFoundPage from '../../pages/NotFoundPage.jsx';
-import myPropTypes from '../../utils/propTypes.js';
 
 const MyRoutes = ({ children }) => (
   <BrowserRouter>
@@ -26,13 +25,5 @@ const MyRoutes = ({ children }) => (
     </Routes>
   </BrowserRouter>
 );
-
-MyRoutes.defaultProps = {
-  children: null,
-};
-
-MyRoutes.propTypes = {
-  children: myPropTypes.children,
-};
 
 export default MyRoutes;

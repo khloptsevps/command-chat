@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import myPropTypes from '../../utils/propTypes.js';
 import AuthContext from '../../utils/contexts/index.jsx';
 import storage from '../../utils/storage.js';
 
@@ -38,10 +37,6 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
-};
-
-AuthProvider.propTypes = {
-  children: myPropTypes.children.isRequired,
 };
 
 export default AuthProvider;

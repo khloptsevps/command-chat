@@ -3,7 +3,6 @@ import { Form } from 'react-bootstrap';
 import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import myPropTypes from '../../../../utils/propTypes';
 
 const InputMessage = ({ ...props }) => {
   const { t } = useTranslation();
@@ -30,10 +29,6 @@ const InputMessage = ({ ...props }) => {
       {...props}
     />
   );
-};
-
-InputMessage.propTypes = {
-  disabled: myPropTypes.boolean.isRequired,
 };
 
 export default InputMessage;

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Nav } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import myPropTypes from '../../../utils/propTypes.js';
 import ButtonItem from './ButtonItem.jsx';
 import DropdownButtonItem from './DropdownButtonItem.jsx';
 
@@ -22,11 +21,6 @@ const ChannelsItem = ({ id, removable, ...props }) => {
       )}
     </Nav.Item>
   );
-};
-
-ChannelsItem.propTypes = {
-  id: myPropTypes.number.isRequired,
-  removable: myPropTypes.boolean.isRequired,
 };
 
 export default ChannelsItem;

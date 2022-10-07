@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../../slices/modalSlice';
 import useModal from '../../../utils/hooks/useModal.jsx';
-import myPropTypes from '../../../utils/propTypes.js';
 
 const DropdownButtonItem = ({ id, children, ...props }) => {
   const dispatch = useDispatch();
@@ -38,11 +37,6 @@ const DropdownButtonItem = ({ id, children, ...props }) => {
       </Dropdown.Menu>
     </Dropdown>
   );
-};
-
-DropdownButtonItem.propTypes = {
-  id: myPropTypes.number.isRequired,
-  children: myPropTypes.children.isRequired,
 };
 
 export default DropdownButtonItem;

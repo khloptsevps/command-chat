@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useRef } from 'react';
 import filter from 'leo-profanity';
-import myPropTypes from '../../../utils/propTypes';
 
 const MessagesItem = ({ username, body }) => {
   const ref = useRef();
@@ -17,10 +15,5 @@ const MessagesItem = ({ username, body }) => {
 };
 
 MessagesItem.displayName = 'MessagesItem';
-
-MessagesItem.propTypes = {
-  body: myPropTypes.string.isRequired,
-  username: myPropTypes.string.isRequired,
-};
 
 export default MessagesItem;

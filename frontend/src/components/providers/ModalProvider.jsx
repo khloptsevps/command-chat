@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../slices/modalSlice.js';
 import { ModalContext } from '../../utils/contexts/index.jsx';
-import myPropTypes from '../../utils/propTypes.js';
 import { channelsSelectors } from '../../slices/channelsSlice.js';
 
 const ModalProvider = ({ children }) => {
@@ -20,10 +19,6 @@ const ModalProvider = ({ children }) => {
       {children}
     </ModalContext.Provider>
   );
-};
-
-ModalProvider.propTypes = {
-  children: myPropTypes.children.isRequired,
 };
 
 export default ModalProvider;

@@ -4,7 +4,6 @@ import { Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import SignUpField from './SignUpField.jsx';
 import MyButton from '../MyButton.jsx';
-import myPropTypes from '../../../utils/propTypes.js';
 
 const SignUpForm = ({ isUserExist, ...props }) => {
   const { t } = useTranslation();
@@ -53,10 +52,6 @@ const SignUpForm = ({ isUserExist, ...props }) => {
       </MyButton>
     </FormikForm>
   );
-};
-
-SignUpForm.propTypes = {
-  isUserExist: myPropTypes.boolean,
 };
 
 export default SignUpForm;
