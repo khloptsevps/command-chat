@@ -4,18 +4,13 @@ import { initReactI18next, I18nextProvider } from 'react-i18next';
 import leoProfanity from 'leo-profanity';
 import { Provider } from 'react-redux';
 import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
-import { io } from 'socket.io-client';
 import store from './slices/store';
 import ru from './locales/resources/ru';
-import {
-  addChannel,
-  removeChannel,
-  renameChannel,
-} from './slices/channelsSlice.js';
+import { addChannel, removeChannel, renameChannel } from './slices/channelsSlice.js';
 import { addMessage } from './slices/messagesSlice.js';
 import App from './App.js';
 
-export default async () => {
+export default async (socket) => {
   const i18n = i18next.createInstance();
   await i18n.use(initReactI18next).init({
     fallbackLng: 'ru',
@@ -33,7 +28,6 @@ export default async () => {
     captureUncaught: true,
     captureUnhandledRejections: true,
   };
-  const socket = io();
   const addChannelListener = (payload) => {
     store.dispatch(addChannel(payload));
   };
