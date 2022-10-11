@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Formik } from 'formik';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import SignUpForm from './signUp/SignUpForm.jsx';
@@ -15,6 +15,7 @@ const SignUp = () => {
   const [isDisabled, setIsDisabled] = useState(false);
   const { logIn } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const initialValues = {
     username: '',
     password: '',
@@ -30,13 +31,13 @@ const SignUp = () => {
       });
       storage.setItem(resp.data);
       logIn();
-      navigate('/');
+      navigate(routes.chatPagePath(), { state: { from: location } });
     } catch (error) {
+      setIsDisabled(false);
       const { data } = error.response;
       if (data.statusCode === 409) {
         setIsUserExist(true);
       }
-      setIsDisabled(false);
     }
   };
   return (
