@@ -12,6 +12,7 @@ import myToasts from '../../../utils/toasts.js';
 
 const AuthForm = () => {
   const [authFailed, setAuthFailed] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
   const auth = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,6 +23,7 @@ const AuthForm = () => {
   };
   const authHandler = async (values, { setSubmitting }) => {
     try {
+      setIsDisabled(true);
       setAuthFailed(false);
       const response = await axios.post(routes.signInPath(), values);
       storage.setItem(response.data);
@@ -29,6 +31,7 @@ const AuthForm = () => {
       navigate(routes.chatPagePath(), { state: { from: location } });
     } catch (error) {
       console.error('Error:', error);
+      setIsDisabled(false);
       setSubmitting(false);
       if (error.response.status === 401) {
         setAuthFailed(true);
@@ -52,6 +55,7 @@ const AuthForm = () => {
           type="text"
           autoComplete="username"
           isInvalid={authFailed}
+          disabled={isDisabled}
         />
         <MyTextInput
           divGroupClasses="form-floating mb-3"
@@ -60,12 +64,13 @@ const AuthForm = () => {
           type="password"
           autoComplete="current-password"
           isInvalid={authFailed}
+          disabled={isDisabled}
         >
           {authFailed ? (
             <div className="invalid-tooltip">{t('pages.login.form.error')}</div>
           ) : null}
         </MyTextInput>
-        <MyButton className="w-100 mb-3 mt-5">
+        <MyButton className="w-100 mb-3 mt-5" disabled={isDisabled}>
           {t('pages.login.form.button')}
         </MyButton>
       </Form>
