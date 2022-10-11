@@ -2,16 +2,21 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { Form } from 'formik';
 import { useTranslation } from 'react-i18next';
-import useModal from '../../../utils/hooks/useModal.jsx';
+import { useDispatch, useSelector } from 'react-redux';
 import MyTextInput from '../../forms/MyTextInput.jsx';
+import { closeModal } from '../../../slices/modalSlice.js';
 
 const MyForm = ({ errors, isValid, disabled }) => {
+  const modal = useSelector((state) => state.modal);
+  const dispatch = useDispatch();
+  const handleClose = () => {
+    dispatch(closeModal());
+  };
   const { t } = useTranslation();
-  const { type, handleClose } = useModal();
   return (
     <Form>
       <MyTextInput
-        label={t(`pages.chat.modals.${type}.label`)}
+        label={t(`pages.chat.modals.${modal.type}.label`)}
         hideLabel
         type="text"
         name="name"

@@ -2,11 +2,12 @@ import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import MyForm from './MyForm.jsx';
-import useModal from '../../../utils/hooks/useModal.jsx';
+import { channelsSelectors } from '../../../slices/channelsSlice.js';
 
 const ModalForm = ({ initValues, handleSubmit, disabled }) => {
-  const { channelsNames } = useModal();
+  const channelsNames = useSelector(channelsSelectors.selectAll).map((c) => c.name);
   const { t } = useTranslation();
   return (
     <Formik

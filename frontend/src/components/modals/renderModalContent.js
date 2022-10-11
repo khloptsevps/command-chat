@@ -3,14 +3,14 @@ import AddChannel from './AddChannel.jsx';
 import RemoveChannel from './RemoveChannel.jsx';
 import RenameChannel from './RenameChannel.jsx';
 
-const renderModalContent = (type) => {
+const renderModalContent = (type, handleClose) => {
   switch (type) {
     case 'addChannel':
-      return <AddChannel />;
+      return <AddChannel handleClose={handleClose} />;
     case 'removeChannel':
-      return <RemoveChannel />;
+      return <RemoveChannel handleClose={handleClose} />;
     case 'renameChannel':
-      return <RenameChannel />;
+      return <RenameChannel handleClose={handleClose} />;
     default:
       return null;
   }

@@ -1,18 +1,22 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import useModal from '../../utils/hooks/useModal.jsx';
-import renderModalContent from './renderModalContent';
+import { useDispatch } from 'react-redux';
+import { closeModal } from '../../slices/modalSlice.js';
+import renderModalContent from './renderModalContent.js';
 
 const MyModal = ({ modal }) => {
-  const { handleClose, type } = useModal();
+  const dispatch = useDispatch();
+  const handleClose = () => {
+    dispatch(closeModal());
+  };
   const { t } = useTranslation();
   return (
     <Modal show={modal.isOpened} onHide={handleClose} size="lg" centered>
       <Modal.Header closeButton>
-        <Modal.Title>{t(`pages.chat.modals.${type}.title`)}</Modal.Title>
+        <Modal.Title>{t(`pages.chat.modals.${modal.type}.title`)}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>{renderModalContent(type)}</Modal.Body>
+      <Modal.Body>{renderModalContent(modal.type, handleClose)}</Modal.Body>
     </Modal>
   );
 };

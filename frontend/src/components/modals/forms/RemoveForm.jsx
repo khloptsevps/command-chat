@@ -1,12 +1,16 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import useModal from '../../../utils/hooks/useModal.jsx';
+import { useDispatch } from 'react-redux';
+import { closeModal } from '../../../slices/modalSlice.js';
 
 const RemoveForm = (props) => {
   const { variant, disabled, onClick } = props;
+  const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { handleClose } = useModal();
+  const handleClose = () => {
+    dispatch(closeModal());
+  };
   return (
     <>
       <p>{t('pages.chat.modals.removeChannel.message')}</p>

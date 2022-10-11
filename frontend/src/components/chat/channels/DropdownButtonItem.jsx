@@ -3,21 +3,16 @@ import { Dropdown, ButtonGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../../slices/modalSlice';
-import useModal from '../../../utils/hooks/useModal.jsx';
 
 const DropdownButtonItem = ({ id, children, variant }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { setType } = useModal();
-  const params = { isOpened: true, extra: { currId: id } };
   const removeButtonHandler = () => {
-    dispatch(openModal({ ...params, type: 'removeChannel' }));
-    setType('removeChannel');
+    dispatch(openModal({ type: 'removeChannel', extra: { currId: id } }));
   };
 
   const renameButtonHandler = () => {
-    dispatch(openModal({ ...params, type: 'renameChannel' }));
-    setType('renameChannel');
+    dispatch(openModal({ type: 'renameChannel', extra: { currId: id } }));
   };
   return (
     <Dropdown as={ButtonGroup} className="d-flex">
