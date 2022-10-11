@@ -10,6 +10,7 @@ import ChatPage from '../../pages/ChatPage.jsx';
 import LoginPage from '../../pages/LoginPage.jsx';
 import SignUpPage from '../../pages/SignUpPage.jsx';
 import NotFoundPage from '../../pages/NotFoundPage.jsx';
+import routes from '../../utils/routes.js';
 
 const MyRoutes = ({ children }) => (
   <BrowserRouter>
@@ -17,15 +18,15 @@ const MyRoutes = ({ children }) => (
     <Outlet />
     <Routes>
       <Route
-        path="/"
+        path={routes.chatPagePath()}
         element={(
           <PrivateRoute>
             <ChatPage />
           </PrivateRoute>
         )}
       />
-      <Route path="login" element={<LoginPage />} />
-      <Route path="signup" element={<SignUpPage />} />
+      <Route path={routes.loginPagePath()} element={<LoginPage />} />
+      <Route path={routes.signupPagePath()} element={<SignUpPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   </BrowserRouter>

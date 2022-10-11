@@ -1,7 +1,7 @@
 import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import routes from '../../../utils/routes.js';
 import useAuth from '../../../utils/hooks/useAuth.jsx';
@@ -14,6 +14,7 @@ const AuthForm = () => {
   const [authFailed, setAuthFailed] = useState(false);
   const auth = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const { t } = useTranslation();
   const initValues = {
     username: '',
@@ -25,7 +26,7 @@ const AuthForm = () => {
       const response = await axios.post(routes.signInPath(), values);
       storage.setItem(response.data);
       auth.logIn();
-      navigate('/');
+      navigate(routes.chatPagePath(), { state: { from: location } });
     } catch (error) {
       console.error('Error:', error);
       setSubmitting(false);

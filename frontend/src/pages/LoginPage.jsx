@@ -7,6 +7,7 @@ import CardContainer from '../components/cardContainer/CardContainer.jsx';
 import MyImage from '../components/image/MyImage.jsx';
 import useAuth from '../utils/hooks/useAuth.jsx';
 import AuthForm from '../components/forms/authForm/AuthForm.jsx';
+import routes from '../utils/routes.js';
 
 const LoginPage = () => {
   const { loggedIn } = useAuth();
@@ -14,7 +15,7 @@ const LoginPage = () => {
   const { t } = useTranslation();
 
   return loggedIn ? (
-    <Navigate to="/" state={{ from: location }} />
+    <Navigate to={routes.chatPagePath()} state={{ from: location }} />
   ) : (
     <CardContainer>
       <Card.Body className="row p-5 pb-0">
@@ -24,7 +25,7 @@ const LoginPage = () => {
       <Card.Footer className="p-4">
         <div className="text-center">
           <span>{t('pages.login.footer.question')}</span>
-          <Link to="../signup">{t('pages.login.footer.link')}</Link>
+          <Link to={routes.signupPagePath()}>{t('pages.login.footer.link')}</Link>
         </div>
       </Card.Footer>
     </CardContainer>

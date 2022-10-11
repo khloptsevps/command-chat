@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import routes from '../utils/routes.js';
 import notFound from '../__assets__/svg/notFound.svg';
 
 const NotFoundPage = () => {
@@ -17,7 +18,7 @@ const NotFoundPage = () => {
           <h1 className="h4 text-muted">{t('pages.notFound.title')}</h1>
           <p className="text-muted">
             {t('pages.notFound.text')}
-            <Link to="/">{t('pages.notFound.link')}</Link>
+            <Link to={routes.chatPagePath()}>{t('pages.notFound.link')}</Link>
           </p>
         </div>
       </div>
