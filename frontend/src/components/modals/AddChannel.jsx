@@ -3,28 +3,30 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { switchChannel } from '../../slices/channelsSlice.js';
 import ModalForm from './forms/ModalForm.jsx';
-import socket from '../../utils/socket.js';
 import myToasts from '../../utils/toasts.js';
+import useSocket from '../../utils/hooks/useSocket.jsx';
 
 const AddChannel = ({ handleClose }) => {
-  const [disabled, setDisabled] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const socketApi = useSocket();
   const { t } = useTranslation();
   const text = t('toasts.channelAdded');
   const dispatch = useDispatch();
   const initValues = {
     name: '',
   };
-  const handleSubmit = (value) => {
-    setDisabled(true);
-    socket.volatile.emit('newChannel', value, ({ data, status }) => {
-      if (status === 'ok') {
-        dispatch(switchChannel({ id: data.id }));
-        handleClose();
-        myToasts({ type: 'success', text });
-      }
-    });
+  const handleSubmit = async (value) => {
+    try {
+      setIsDisabled(true);
+      const response = await socketApi.addNewChannel(value);
+      dispatch(switchChannel({ id: response.id }));
+      handleClose();
+      myToasts({ type: 'success', text });
+    } catch {
+      setIsDisabled(false);
+    }
   };
-  return <ModalForm initValues={initValues} handleSubmit={handleSubmit} disabled={disabled} />;
+  return <ModalForm initValues={initValues} handleSubmit={handleSubmit} disabled={isDisabled} />;
 };
 
 export default AddChannel;
