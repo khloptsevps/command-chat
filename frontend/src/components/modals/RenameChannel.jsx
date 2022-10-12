@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { channelsSelectors } from '../../slices/channelsSlice.js';
-import socket from '../../utils/socket.js';
 import ModalForm from './forms/ModalForm.jsx';
 import myToasts from '../../utils/toasts.js';
+import useSocket from '../../utils/hooks/useSocket.jsx';
 
 const RenameChannel = ({ handleClose }) => {
   const { t } = useTranslation();
+  const socketApi = useSocket();
   const text = t('toasts.channelRenamed');
-  const [disabled, setDisabled] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
   const { extra } = useSelector((state) => state.modal);
   const currentChannel = useSelector(channelsSelectors.selectAll).find(
     ({ id }) => id === extra.currId,
@@ -17,17 +18,18 @@ const RenameChannel = ({ handleClose }) => {
   const initValues = {
     name: currentChannel.name,
   };
-  const handleSubmit = (v) => {
-    setDisabled(true);
+  const handleSubmit = async (v) => {
     const data = { ...v, id: extra.currId };
-    socket.volatile.emit('renameChannel', data, ({ status }) => {
-      if (status === 'ok') {
-        handleClose();
-        myToasts({ type: 'success', text });
-      }
-    });
+    try {
+      setIsDisabled(true);
+      await socketApi.renameChannel(data);
+      handleClose();
+      myToasts({ type: 'success', text });
+    } catch {
+      setIsDisabled(false);
+    }
   };
-  return <ModalForm initValues={initValues} handleSubmit={handleSubmit} disabled={disabled} />;
+  return <ModalForm initValues={initValues} handleSubmit={handleSubmit} disabled={isDisabled} />;
 };
 
 export default RenameChannel;
