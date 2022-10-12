@@ -63,6 +63,7 @@ export default async (socket) => {
   const socketApi = {
     addNewChannel: confirmSocket((...value) => socket.volatile.emit('newChannel', ...value)),
     renameChannel: confirmSocket((...value) => socket.volatile.emit('renameChannel', ...value)),
+    removeChannel: confirmSocket((...value) => socket.volatile.emit('removeChannel', ...value)),
   };
 
   const app = (
