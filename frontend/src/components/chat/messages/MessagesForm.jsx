@@ -1,41 +1,39 @@
 import { Formik, Form } from 'formik';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import useAuth from '../../../utils/hooks/useAuth.jsx';
-import socket from '../../../utils/socket.js';
 import SendButton from './formElements/SendButton.jsx';
 import InputMessage from './formElements/InputMessage.jsx';
+import useSocket from '../../../utils/hooks/useSocket.jsx';
 
 const MessagesForm = () => {
   const channelId = useSelector((state) => state.channels.currentChannelId);
   const { username } = useAuth();
-  const [inputDisabled, setInputDisabled] = useState(false);
-  const element = useRef(null);
+  const socketApi = useSocket();
+  const [isDisabled, setIsDisabled] = useState(false);
 
-  useEffect(() => {
-    element.current?.reset();
-  }, [inputDisabled]);
-
-  const onSubmit = (v) => {
+  const onSubmit = async (v, { resetForm }) => {
     const message = {
       ...v,
       channelId,
       username,
     };
-    setInputDisabled(true);
-    socket.volatile.emit('newMessage', message, ({ status }) => {
-      if (status === 'ok') {
-        setInputDisabled(false);
-      }
-    });
+    try {
+      setIsDisabled(true);
+      await socketApi.addNewMessage(message);
+      resetForm();
+      setIsDisabled(false);
+    } catch (error) {
+      setIsDisabled(false);
+    }
   };
 
   return (
     <Formik initialValues={{ body: '' }} onSubmit={onSubmit}>
       <div className="mt-auto px-5 py-3">
-        <Form ref={element} noValidate className="py-1 border rounded-2">
+        <Form noValidate className="py-1 border rounded-2">
           <div className="input-group has-validation">
-            <InputMessage name="body" disabled={inputDisabled} />
+            <InputMessage name="body" disabled={isDisabled} />
             <SendButton />
           </div>
         </Form>
