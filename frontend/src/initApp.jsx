@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
 import React from 'react';
 import i18next from 'i18next';
 import { initReactI18next, I18nextProvider } from 'react-i18next';
@@ -60,10 +59,12 @@ export default async (socket) => {
     });
   });
 
+  // eslint-disable-next-line react/jsx-no-constructed-context-values
   const socketApi = {
     addNewChannel: confirmSocket((...value) => socket.volatile.emit('newChannel', ...value)),
     renameChannel: confirmSocket((...value) => socket.volatile.emit('renameChannel', ...value)),
     removeChannel: confirmSocket((...value) => socket.volatile.emit('removeChannel', ...value)),
+    addNewMessage: confirmSocket((...value) => socket.volatile.emit('newMessage', ...value)),
   };
 
   const app = (
