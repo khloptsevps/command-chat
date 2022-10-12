@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 import React from 'react';
 import i18next from 'i18next';
 import { initReactI18next, I18nextProvider } from 'react-i18next';
@@ -8,6 +9,7 @@ import store from './slices/store';
 import ru from './locales/resources/ru';
 import { addChannel, removeChannel, renameChannel } from './slices/channelsSlice.js';
 import { addMessage } from './slices/messagesSlice.js';
+import { SocketContext } from './utils/contexts/index.jsx';
 import App from './App.js';
 
 export default async (socket) => {
@@ -44,12 +46,32 @@ export default async (socket) => {
   socket.on('newChannel', addChannelListener);
   socket.on('removeChannel', removeChannelListener);
   socket.on('renameChannel', renameChannelListener);
+
+  const confirmSocket = (socketFunc) => (value) => new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      reject();
+    }, 3000);
+    socketFunc(value, (response) => {
+      if (response.status === 'ok') {
+        clearTimeout(timer);
+        resolve(response.data);
+      }
+      reject();
+    });
+  });
+
+  const socketApi = {
+    addNewChannel: confirmSocket((...value) => socket.volatile.emit('newChannel', ...value)),
+  };
+
   const app = (
     <Provider store={store}>
       <I18nextProvider i18n={i18n}>
         <RollbarProvider config={rollbarConfig}>
           <ErrorBoundary>
-            <App />
+            <SocketContext.Provider value={socketApi}>
+              <App />
+            </SocketContext.Provider>
           </ErrorBoundary>
         </RollbarProvider>
       </I18nextProvider>
