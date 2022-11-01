@@ -104,6 +104,12 @@ $ make install
 $ make start
 ```
 
+## Сборка фронтенда / Build frontend
+
+```sh
+$ npm run build
+```
+
 ## Ссылка на приложение / Link to app
 
 [Slack-чат](https://frontend-hexlet-chat-ru.herokuapp.com/) :zap:
