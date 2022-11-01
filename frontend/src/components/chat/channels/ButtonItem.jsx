@@ -14,7 +14,7 @@ const ButtonItem = ({ id, name, ...props }) => {
   return (
     <Button
       variant={variant}
-      className="w-100 rounded-0 text-start text-truncate"
+      className="w-100 rounded-1 text-start text-truncate"
       onClick={handleSwitchChannel}
     >
       <span className="me-1">#</span>
