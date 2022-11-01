@@ -18,7 +18,7 @@
   - научиться работать с socket API
 
 - ### Организация роутинга
-  - научиться организовывать роутинг с помщью react-router-dom
+  - научиться организовывать роутинг с помщью react-router
   - организация публичных и приватных маршрутов
   - организация маршрута по отсутствующему пути
 
@@ -55,7 +55,7 @@
   - использования хуков и компонентов
   - валидация форм с помощью Yup
   
-- ### Интернационализация
+- ### Интернационализация (React-i18next)
   - инициализация
   - организация словаря
   - отделение текста от кода
@@ -76,13 +76,15 @@
   - [React Router v6](https://reactrouter.com/)
   - [React-i18next](https://react.i18next.com/)
   - [Redux/toolkit](https://redux-toolkit.js.org/)
-  
+  - [React-bootstrap](https://react-bootstrap.github.io/forms/overview/)
+  - [socket.io](https://socket.io/docs/v4/)
   - [axios](https://github.com/axios/axios)
   - [bootstrap](https://getbootstrap.com/)
   - [i18next](https://www.i18next.com/)
-  - [lodash](https://lodash.com/)
-  - [on-change](https://github.com/sindresorhus/on-change)
+  - [Formik](https://formik.org/docs/overview)
   - [yup](https://github.com/jquense/yup)
+  - [leo-profanity](https://github.com/jojoee/leo-profanity)
+  - [Rollbar](https://docs.rollbar.com/docs/react)
 
 ## Системные требования / System requirements
 
