@@ -101,13 +101,13 @@ $ make install
 ## Запуск (режим разработки) / start (developer mode)
 
 ```sh
-$ make start
+$ make dev
 ```
 
 ## Сборка фронтенда / Build frontend
 
 ```sh
-$ npm run build
+$ make build
 ```
 
 ## Ссылка на приложение / Link to app
