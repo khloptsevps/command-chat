@@ -1,7 +1,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/2502f4ad8968b7b11de2/maintainability)](https://codeclimate.com/github/khloptsevps/frontend-project-lvl4/maintainability)
 
 ---
-# Слак-чат (очень упрощенная версия)
+# Командный чат (аналог Slack-чата, очень упрощенная версия)
 
 Учебный проект школы программирования ["Hexlet"](https://ru.hexlet.io/?ref=252944).  
 
